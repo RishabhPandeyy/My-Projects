@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduGenius - Mathematics-I Syllabus</title> <!-- Title Updated -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Modern Gradient UI - IDENTICAL STYLES TO physics.html */
+        :root {
+            --primary: #6a11cb;
+            --secondary: #2575fc;
+            --glass: rgba(255, 255, 255, 0.2);
+            --accent: #ff8a00;
+            --header-height: 85px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { background: linear-gradient(45deg, #6a11cb, #2575fc); min-height: 100vh; color: white; }
+        .header { backdrop-filter: blur(10px); background: var(--glass); padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); position: sticky; top: 0; z-index: 999; height: var(--header-height); }
+        .logo { font-size: 28px; font-weight: 700; background: linear-gradient(to right, #fff, #ddd); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav a { color: white; text-decoration: none; margin-left: 20px; font-weight: 500; }
+
+        /* Sidebar Layout Styles - Copied from physics.html */
+        .page-container { display: flex; padding: 30px 5%; gap: 30px; }
+        .sidebar { width: 300px; flex-shrink: 0; backdrop-filter: blur(10px); background: var(--glass); border-radius: 15px; padding: 25px; height: fit-content; max-height: calc(100vh - var(--header-height) - 60px); overflow-y: auto; position: sticky; top: calc(var(--header-height) + 30px); border: 1px solid rgba(255,255,255,0.1); }
+        .sidebar h2 { font-size: 20px; margin-bottom: 20px; color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 8px; display: inline-block; }
+        .sidebar ul { list-style: none; padding-left: 5px; }
+        .sidebar li { margin-bottom: 8px; }
+        .sidebar li.unit-heading { font-weight: 700; color: var(--accent); margin-top: 15px; margin-bottom: 10px; font-size: 16px; padding-left: 0; }
+        .sidebar li.unit-heading:first-child { margin-top: 0; }
+        .sidebar a { color: white; text-decoration: none; font-weight: 400; font-size: 14px; display: flex; align-items: center; gap: 8px; transition: color 0.3s, transform 0.3s; padding: 5px 0; padding-left: 15px; position: relative; }
+        .sidebar a::before { content: '\f111'; font-family: 'Font Awesome 6 Free'; font-weight: 900; font-size: 6px; position: absolute; left: 0; top: 50%; transform: translateY(-50%); color: var(--accent); opacity: 0.7; }
+        .sidebar a:hover { color: var(--accent); transform: translateX(3px); }
+
+        /* Content Area Styles - Copied from physics.html */
+        .content-area { flex-grow: 1; backdrop-filter: blur(10px); background: var(--glass); border-radius: 15px; padding: 30px; border: 1px solid rgba(255,255,255,0.1); }
+        .content-area h1.page-title { font-size: 28px; margin-bottom: 30px; background: linear-gradient(to right, #fff, #ddd); -webkit-background-clip: text; -webkit-text-fill-color: transparent; border-bottom: 2px solid rgba(255,255,255,0.2); padding-bottom: 10px; }
+        .content-area section { margin-bottom: 40px; padding-top: calc(var(--header-height) + 30px); margin-top: calc(-1 * (var(--header-height) + 30px)); }
+        .content-area h3.unit-title { margin-bottom: 20px; font-size: 22px; color: var(--accent); position: relative; padding-bottom: 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        /* No h4 sub-unit titles needed for Maths-I structure */
+        .content-area ul { list-style: none; padding-left: 0; }
+        .content-area li { margin-bottom: 12px; line-height: 1.7; padding-left: 25px; position: relative; font-size: 16px; opacity: 0.9; padding-top: 5px; margin-top: -5px; }
+        .content-area li::before { content: '\f058'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: var(--accent); position: absolute; left: 0; top: 9px; font-size: 14px; }
+
+        /* Footer Styles - IDENTICAL */
+        .footer { text-align: center; padding: 30px 5%; margin-top: 50px; backdrop-filter: blur(10px); background: var(--glass); border-top: 1px solid rgba(255,255,255,0.1); }
+
+        /* Auth Modal Styles - IDENTICAL */
+        .auth-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center; }
+        .auth-container { background: linear-gradient(45deg, #6a11cb, #2575fc); padding: 30px; border-radius: 15px; width: 90%; max-width: 400px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); position: relative; }
+        .close-btn { position: absolute; top: 15px; right: 15px; font-size: 24px; cursor: pointer; color: white; }
+        .auth-title { text-align: center; margin-bottom: 25px; font-size: 28px; background: linear-gradient(to right, #fff, #ddd); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .auth-form .form-group { margin-bottom: 20px; }
+        .auth-form label { display: block; margin-bottom: 8px; font-weight: 500; }
+        .auth-form input { width: 100%; padding: 12px 15px; border-radius: 8px; border: none; background: rgba(255,255,255,0.9); font-size: 16px; color: #333; }
+        .auth-form button { width: 100%; padding: 12px; border-radius: 8px; border: none; background: linear-gradient(to right, var(--accent), #da1b60); color: white; font-weight: 600; cursor: pointer; font-size: 16px; margin-top: 10px; }
+        .auth-form button:hover { opacity: 0.9; }
+        .auth-link { text-align: center; margin-top: 15px; }
+        .auth-link a { color: var(--accent); text-decoration: none; font-weight: 500; }
+        .error-message { color: #ff6b6b; text-align: center; margin-bottom: 15px; font-size: 14px; }
+        .success-message { color: #51cf66; text-align: center; margin-bottom: 15px; font-size: 14px; }
+
+        /* Responsive Adjustments - IDENTICAL */
+        @media (max-width: 992px) { .page-container { flex-direction: column; } .sidebar { width: 100%; position: static; margin-bottom: 30px; max-height: 400px; } }
+        @media (max-width: 768px) { .header { padding: 15px 5%; height: auto; } .nav a { margin-left: 10px; font-size: 14px; } .logo { font-size: 24px; } .sidebar { padding: 20px; width: 100%; } .content-area { padding: 20px; } .content-area h1.page-title { font-size: 24px; } .content-area h3.unit-title { font-size: 20px; } .content-area section { padding-top: 90px; margin-top: -90px; } }
+
+    </style>
+</head>
+<body>
+    <!-- Header - IDENTICAL -->
+    <header class="header"> <div class="logo">EduGenius</div> <nav class="nav"> <a href="index.html" class="nav-link" data-page="home">Home</a> <a href="index.html#engineering" class="nav-link" data-page="engineering">Engineering</a> <a href="index.html#pyqs" class="nav-link" data-page="pyqs">PYQs</a> <a href="#" class="nav-link" id="login-link">Login</a> </nav> </header>
+
+    <!-- Main Content Area with Detailed Sidebar -->
+    <div id="main-content">
+        <div class="page-container">
+            <!-- Sidebar Navigation - DETAILED for Maths-I -->
+            <aside class="sidebar">
+                <h2>Maths-I Topics</h2>
+                <ul>
+                    <li class="unit-heading">Unit 1: Matrices</li>
+                    <li><a href="#matrix-types">Types of Matrices</a></li>
+                    <li><a href="#elementary-transformations">Inverse & Rank (Elem. Trans.)</a></li>
+                    <li><a href="#rank-nullity">Rank-Nullity Theorem</a></li>
+                    <li><a href="#linear-equations">System of Linear Equations</a></li>
+                    <li><a href="#characteristic-equation">Characteristic Equation</a></li>
+                    <li><a href="#cayley-hamilton">Cayley-Hamilton Theorem</a></li>
+                    <li><a href="#matrix-diagonalization">Diagonalization of Matrix</a></li>
+
+                    <li class="unit-heading">Unit 2: Diff. Calculus – I</li>
+                    <li><a href="#limits-continuity">Limits, Continuity, Differentiability</a></li>
+                    <li><a href="#rolles-theorem">Rolle’s Theorem</a></li>
+                    <li><a href="#mean-value-theorems">Lagrange & Cauchy MVT</a></li>
+                    <li><a href="#successive-differentiation">Successive Diff. (nth order)</a></li>
+                    <li><a href="#leibnitz-theorem">Leibnitz’s Theorem</a></li>
+                    <li><a href="#envelope-involute-evolute">Envelope, Involutes, Evolutes</a></li>
+                    <li><a href="#curve-tracing">Curve Tracing (Cartesian/Polar)</a></li>
+
+                    <li class="unit-heading">Unit 3: Diff. Calculus – II</li>
+                    <li><a href="#partial-total-derivatives">Partial & Total Derivatives</a></li>
+                    <li><a href="#eulers-theorem">Euler’s Theorem (Homogeneous)</a></li>
+                    <li><a href="#taylor-maclaurin">Taylor & Maclaurin (1/2 Var)</a></li>
+                    <li><a href="#maxima-minima">Maxima & Minima (Several Var)</a></li>
+                    <li><a href="#lagrange-multipliers">Lagrange’s Multipliers</a></li>
+                    <li><a href="#jacobians">Jacobians</a></li>
+
+                    <li class="unit-heading">Unit 4: Multivariable Calc. – I</li>
+                    <li><a href="#double-integrals">Double Integrals</a></li>
+                    <li><a href="#triple-integrals">Triple Integrals</a></li>
+                    <li><a href="#integral-applications">Applications (Area, Volume, etc.)</a></li>
+
+                    <li class="unit-heading">Unit 5: Vector Calculus</li>
+                    <li><a href="#vector-identities">Vector Identities</a></li>
+                    <li><a href="#vector-differentiation">Vector Differentiation (Grad, Curl, Div)</a></li>
+                    <li><a href="#directional-derivatives">Directional Derivatives</a></li>
+                    <li><a href="#vector-integration">Vector Integration (Line, Surface, Vol)</a></li>
+                    <li><a href="#gauss-divergence">Gauss's Divergence Theorem</a></li>
+                    <li><a href="#greens-theorem">Green’s Theorem</a></li>
+                    <li><a href="#stokes-theorem">Stokes’ Theorem</a></li>
+                </ul>
+            </aside>
+
+            <!-- Syllabus Content -->
+            <div class="content-area">
+                 <!-- Page Title Updated -->
+                 <h1 class="page-title">Mathematics-I (BAS103) Syllabus - AKTU</h1>
+
+                <!-- Section for each Unit with IDs on list items -->
+                <section id="unit1">
+                    <h3 class="unit-title">Unit 1: Matrices</h3>
+                    <ul>
+                        <li id="matrix-types">Types of matrices: Symmetric, Skew-symmetric, Orthogonal, Complex, Unitary</li>
+                        <li id="elementary-transformations">Inverse and rank of a matrix using elementary transformations</li>
+                        <li id="rank-nullity">Rank-Nullity theorem</li>
+                        <li id="linear-equations">System of linear equations</li>
+                        <li id="characteristic-equation">Characteristic equation</li>
+                        <li id="cayley-hamilton">Cayley-Hamilton Theorem and its applications</li>
+                        <li id="matrix-diagonalization">Diagonalization of a matrix</li>
+                    </ul>
+                </section>
+
+                <section id="unit2">
+                    <h3 class="unit-title">Unit 2: Differential Calculus – I</h3>
+                    <ul>
+                        <li id="limits-continuity">Limits, continuity, and differentiability</li>
+                        <li id="rolles-theorem">Rolle’s Theorem</li>
+                        <li id="mean-value-theorems">Lagrange’s and Cauchy’s Mean Value Theorems</li>
+                        <li id="successive-differentiation">Successive differentiation and nth order derivatives</li>
+                        <li id="leibnitz-theorem">Leibnitz’s theorem and its applications</li>
+                        <li id="envelope-involute-evolute">Envelope, involutes, and evolutes</li>
+                        <li id="curve-tracing">Curve tracing in Cartesian and polar coordinates</li>
+                    </ul>
+                </section>
+
+                <section id="unit3">
+                    <h3 class="unit-title">Unit 3: Differential Calculus – II</h3>
+                    <ul>
+                        <li id="partial-total-derivatives">Partial derivatives and total derivatives</li>
+                        <li id="eulers-theorem">Euler’s theorem for homogeneous functions</li>
+                        <li id="taylor-maclaurin">Taylor and Maclaurin’s theorems for functions of one and two variables</li>
+                        <li id="maxima-minima">Maxima and minima of functions of several variables</li>
+                        <li id="lagrange-multipliers">Lagrange’s method of multipliers</li>
+                        <li id="jacobians">Jacobians</li>
+                    </ul>
+                </section>
+
+                <section id="unit4">
+                    <h3 class="unit-title">Unit 4: Multivariable Calculus – I</h3>
+                    <ul>
+                        <li id="double-integrals">Double integrals</li>
+                        <li id="triple-integrals">Triple integrals</li>
+                        <li id="integral-applications">Applications: Areas, volumes, center of mass, and center of gravity (with constant and variable densities)</li>
+                    </ul>
+                </section>
+
+                <section id="unit5">
+                    <h3 class="unit-title">Unit 5: Vector Calculus</h3>
+                    <ul>
+                        <li id="vector-identities">Vector identities (without proof)</li>
+                        <li id="vector-differentiation">Vector differentiation: Gradient, curl, divergence, and their physical interpretations</li>
+                        <li id="directional-derivatives">Directional derivatives</li>
+                        <li id="vector-integration">Vector integration: Line, surface, and volume integrals</li>
+                        <li id="gauss-divergence">Gauss’s Divergence Theorem (without proof) and applications</li>
+                        <li id="greens-theorem">Green’s Theorem (without proof) and applications</li>
+                        <li id="stokes-theorem">Stokes’ Theorem (without proof) and applications</li>
+                    </ul>
+                </section>
+                 <p style="margin-top: 30px; font-size: 14px; opacity: 0.8;">
+                     <i>Note: This syllabus is based on the AKTU curriculum. Refer to official sources for the most current version.</i>
+                 </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer - IDENTICAL -->
+    <footer class="footer"> <p>© 2023 EduGenius - Engineering Learning Platform</p> <div style="margin-top: 15px;"> <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-instagram"></i></a> <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-youtube"></i></a> <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-telegram"></i></a> </div> </footer>
+
+    <!-- Auth Modals - IDENTICAL -->
+    <div class="auth-modal" id="login-modal"> <div class="auth-container"> <span class="close-btn" id="close-login">×</span> <h2 class="auth-title">Login</h2> <div id="login-error" class="error-message"></div> <form class="auth-form" id="login-form"> <div class="form-group"> <label for="login-email">Email</label> <input type="email" id="login-email" required> </div> <div class="form-group"> <label for="login-password">Password</label> <input type="password" id="login-password" required> </div> <button type="submit">Login</button> </form> <div class="auth-link"> Don't have an account? <a href="#" id="show-signup">Sign up</a> </div> </div> </div>
+    <div class="auth-modal" id="signup-modal"> <div class="auth-container"> <span class="close-btn" id="close-signup">×</span> <h2 class="auth-title">Sign Up</h2> <div id="signup-error" class="error-message"></div> <div id="signup-success" class="success-message"></div> <form class="auth-form" id="signup-form"> <div class="form-group"> <label for="signup-username">Username</label> <input type="text" id="signup-username" required> </div> <div class="form-group"> <label for="signup-email">Email</label> <input type="email" id="signup-email" required> </div> <div class="form-group"> <label for="signup-password">Password</label> <input type="password" id="signup-password" required> </div> <div class="form-group"> <label for="signup-confirm">Confirm Password</label> <input type="password" id="signup-confirm" required> </div> <button type="submit">Sign Up</button> </form> <div class="auth-link"> Already have an account? <a href="#" id="show-login">Login</a> </div> </div> </div>
+
+    <!-- JavaScript - IDENTICAL TO physics.html -->
+    <script>
+        // User data storage
+        if (!localStorage.getItem('users')) { localStorage.setItem('users', JSON.stringify([])); }
+
+        // DOM Elements
+        const loginLink = document.getElementById('login-link'); const loginModal = document.getElementById('login-modal'); const signupModal = document.getElementById('signup-modal'); const closeLogin = document.getElementById('close-login'); const closeSignup = document.getElementById('close-signup'); const showSignup = document.getElementById('show-signup'); const showLogin = document.getElementById('show-login'); const loginForm = document.getElementById('login-form'); const signupForm = document.getElementById('signup-form'); const loginError = document.getElementById('login-error'); const signupError = document.getElementById('signup-error'); const signupSuccess = document.getElementById('signup-success'); const navLinks = document.querySelectorAll('.nav-link:not(#login-link)'); let currentUser = null;
+
+        // Modal functions
+        function openModal(modal) { modal.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+        function closeModal(modal) { modal.style.display = 'none'; document.body.style.overflow = 'auto'; loginError.textContent = ''; signupError.textContent = ''; signupSuccess.textContent = ''; }
+
+        // Event Listeners for Modals
+        loginLink.addEventListener('click', (e) => { e.preventDefault(); if (currentUser) { currentUser = null; updateNavForUser(null); alert('Logged out successfully!'); } else { openModal(loginModal); } });
+        closeLogin.addEventListener('click', () => closeModal(loginModal)); closeSignup.addEventListener('click', () => closeModal(signupModal)); showSignup.addEventListener('click', (e) => { e.preventDefault(); closeModal(loginModal); openModal(signupModal); }); showLogin.addEventListener('click', (e) => { e.preventDefault(); closeModal(signupModal); openModal(loginModal); });
+
+        // Login Form Submission
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault(); const email = document.getElementById('login-email').value.trim(); const password = document.getElementById('login-password').value; loginError.textContent = ''; if (!email || !password) { loginError.textContent = 'Please enter email and password.'; return; } const users = JSON.parse(localStorage.getItem('users')); const user = users.find(u => u.email === email); if (!user) { loginError.textContent = 'No account found with that email.'; return; } if (user.password !== password) { loginError.textContent = 'Incorrect password.'; return; } currentUser = user; updateNavForUser(user); closeModal(loginModal); loginForm.reset(); alert(`Welcome back, ${user.username}!`);
+        });
+
+        // Signup Form Submission
+        signupForm.addEventListener('submit', (e) => {
+            e.preventDefault(); const username = document.getElementById('signup-username').value.trim(); const email = document.getElementById('signup-email').value.trim(); const password = document.getElementById('signup-password').value; const confirmPassword = document.getElementById('signup-confirm').value; signupError.textContent = ''; signupSuccess.textContent = ''; if (!username || !email || !password || !confirmPassword) { signupError.textContent = 'Please fill in all fields.'; return; } if (password !== confirmPassword) { signupError.textContent = 'Passwords do not match.'; return; } if (!/\S+@\S+\.\S+/.test(email)) { signupError.textContent = 'Please enter a valid email address.'; return; } if (password.length < 6) { signupError.textContent = 'Password must be at least 6 characters long.'; return; } const users = JSON.parse(localStorage.getItem('users')); if (users.some(u => u.email === email)) { signupError.textContent = 'An account with this email already exists.'; return; } if (users.some(u => u.username === username)) { signupError.textContent = 'This username is already taken.'; return; } const newUser = { username, email, password }; users.push(newUser); localStorage.setItem('users', JSON.stringify(users)); signupSuccess.textContent = 'Account created successfully! You can now log in.'; signupForm.reset(); setTimeout(() => { closeModal(signupModal); openModal(loginModal); document.getElementById('login-email').value = email; }, 2000);
+        });
+
+        // Update navigation based on user status
+        function updateNavForUser(user) { if (user) { loginLink.textContent = `Logout (${user.username})`; } else { loginLink.textContent = 'Login'; } }
+
+        // Simple Navigation (for header links back to index)
+        navLinks.forEach(link => { link.addEventListener('click', (e) => { console.log(`Navigating via header link to: ${link.href}`); }); });
+
+        // Initial check on page load (Scroll Adjustment Logic)
+        document.addEventListener('DOMContentLoaded', () => {
+            updateNavForUser(currentUser);
+            const adjustScrollForHeader = () => {
+                const hash = window.location.hash;
+                if (hash) {
+                    try {
+                         const targetElement = document.querySelector(hash);
+                         if (targetElement) {
+                            const header = document.querySelector('.header');
+                            const headerOffset = (header ? header.offsetHeight : 85) + 30;
+                            const elementPosition = targetElement.getBoundingClientRect().top;
+                            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                        }
+                    } catch (e) { console.error("Error finding element for hash:", hash, e); }
+                }
+            };
+            if (window.location.hash) { setTimeout(adjustScrollForHeader, 100); }
+            window.addEventListener('hashchange', () => { setTimeout(adjustScrollForHeader, 0); });
+        });
+    </script>
+</body>
+</html>

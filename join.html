@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduGenius - Join Us & Contribute</title> <!-- Specific Title -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Basic Theme Styles (Variables, Body, Header, Footer) */
+        :root {
+            --primary: #6a11cb;
+            --secondary: #2575fc;
+            --glass: rgba(255, 255, 255, 0.2);
+            --accent: #ff8a00;
+            --header-height: 85px;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            min-height: 100vh;
+            color: white;
+        }
+        .header {
+            backdrop-filter: blur(10px);
+            background: var(--glass);
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            height: var(--header-height);
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(to right, #fff, #ddd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* Simplified Navigation */
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+        }
+
+        /* Main Content Container Styling */
+        .content-container {
+            width: 90%;
+            max-width: 800px; /* Limit width for readability */
+            margin: 40px auto; /* Center the container */
+            backdrop-filter: blur(10px);
+            background: var(--glass);
+            border-radius: 15px;
+            padding: 30px 40px; /* Add padding */
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Page Specific Styles */
+        .page-title {
+            font-size: 2.2em;
+            color: white;
+            margin-bottom: 25px;
+            text-align: center;
+            background: linear-gradient(to right, #fff, #ddd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            border-bottom: 2px solid rgba(255,255,255,0.2);
+            padding-bottom: 15px;
+        }
+        .intro-text {
+             opacity: 0.9;
+             line-height: 1.8;
+             margin-bottom: 30px;
+             text-align: center;
+             font-size: 1.1em;
+        }
+        .section-heading { /* Sub-headings */
+            font-size: 1.5em;
+            color: var(--accent);
+            margin-top: 30px;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            display: inline-block; /* Keep underline contained */
+        }
+        .section-heading i { margin-right: 10px; }
+
+        .benefits-list ul, .contribute-options ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 25px;
+        }
+         .benefits-list li, .contribute-options li {
+            padding-left: 35px;
+            position: relative;
+            margin-bottom: 15px;
+            line-height: 1.7;
+            font-size: 1.05em;
+            opacity: 0.9;
+         }
+         .benefits-list li i, .contribute-options li i {
+            position: absolute;
+            left: 0;
+            top: 5px;
+            color: var(--accent);
+            font-size: 18px;
+            width: 25px;
+            text-align: center;
+         }
+
+        /* Contact Form Styles */
+        .contact-form .form-group {
+            margin-bottom: 20px;
+        }
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: none; /* Or 1px solid rgba(255,255,255,0.3) */
+            background: rgba(255, 255, 255, 0.15); /* Semi-transparent white */
+            font-size: 16px;
+            color: white; /* Text color */
+            backdrop-filter: blur(5px); /* Optional subtle blur */
+            outline: none; /* Remove default outline */
+            transition: background 0.3s;
+        }
+        .contact-form input[type="text"]::placeholder,
+        .contact-form input[type="email"]::placeholder,
+        .contact-form textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6); /* Placeholder text color */
+        }
+        .contact-form input[type="text"]:focus,
+        .contact-form input[type="email"]:focus,
+        .contact-form textarea:focus {
+            background: rgba(255, 255, 255, 0.25); /* Slightly more opaque on focus */
+            /* border: 1px solid var(--accent); */ /* Optional focus border */
+        }
+        .contact-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .contact-form button {
+            width: 100%;
+            padding: 14px; /* Slightly larger button */
+            border-radius: 8px;
+            border: none;
+            background: linear-gradient(to right, var(--accent), #da1b60);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 17px;
+            margin-top: 10px;
+            transition: opacity 0.3s, transform 0.2s;
+        }
+        .contact-form button:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+
+
+        /* Footer Styles - IDENTICAL */
+        .footer {
+            text-align: center;
+            padding: 30px 5%;
+            margin-top: 50px;
+            backdrop-filter: blur(10px);
+            background: var(--glass);
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Responsive Adjustments */
+         @media (max-width: 768px) {
+            .header { padding: 15px 5%; height: auto; }
+            .nav a { margin-left: 10px; font-size: 14px; }
+            .logo { font-size: 24px; }
+            .content-container { width: 95%; padding: 20px; margin: 20px auto; }
+            .page-title { font-size: 1.8em; }
+            .section-heading { font-size: 1.3em; }
+            .intro-text { font-size: 1em; }
+             .benefits-list li, .contribute-options li { font-size: 1em;}
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Header - Simplified Navigation -->
+    <header class="header">
+        <div class="logo">EduGenius</div>
+        <nav class="nav">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="pyqs.html" class="nav-link">PYQs</a>
+            <!-- Add other relevant top-level links if needed -->
+        </nav>
+    </header>
+
+    <!-- Main Content Area - Join Us Page -->
+    <div id="main-content">
+        <div class="content-container">
+            <h1 class="page-title">Get Involved with EduGenius</h1>
+
+            <p class="intro-text">
+                EduGenius aims to be the best free resource for engineering students, providing clear video solutions and study materials. We believe in the power of community and collaboration. Whether you're a student, educator, or enthusiast, there are many ways you can contribute and help us grow!
+            </p>
+
+            <div class="benefits-list">
+                <h3 class="section-heading"><i class="fas fa-star"></i>Why Join Us?</h3>
+                <ul>
+                    <li><i class="fas fa-users"></i>Help thousands of fellow engineering students succeed.</li>
+                    <li><i class="fas fa-brain"></i>Share your knowledge and expertise in specific subjects.</li>
+                    <li><i class="fas fa-briefcase"></i>Build your portfolio and gain experience in content creation/tutoring.</li>
+                    <li><i class="fas fa-handshake"></i>Be part of a growing educational community.</li>
+                    <li><i class="fas fa-lightbulb"></i>Contribute ideas to make EduGenius even better.</li>
+                </ul>
+            </div>
+
+             <div class="contribute-options">
+                 <h3 class="section-heading"><i class="fas fa-cogs"></i>How You Can Contribute</h3>
+                <ul>
+                    <li><i class="fas fa-chalkboard-teacher"></i>**Become a Tutor/Content Creator:** Create video solutions, write explanations, or curate PYQs.</li>
+                    <li><i class="fas fa-file-alt"></i>**Submit Notes/Materials:** Share your well-organized notes or resources.</li>
+                    <li><i class="fas fa-bug"></i>**Provide Feedback:** Report errors, suggest improvements, or request new topics.</li>
+                    <li><i class="fas fa-share-alt"></i>**Spread the Word:** Share EduGenius with your friends and classmates.</li>
+                </ul>
+             </div>
+
+
+             <h3 class="section-heading"><i class="fas fa-envelope"></i>Contact Us</h3>
+             <p style="opacity: 0.9; margin-bottom: 25px;">
+                 Interested in contributing, have a question, or want to provide feedback? Fill out the form below, and we'll get back to you as soon as possible.
+             </p>
+
+            <form class="contact-form" id="join-us-form" action="#" method="POST"> <!-- Action is placeholder -->
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject / Area of Interest</label>
+                    <input type="text" id="subject" name="subject" placeholder="e.g., Contributing for Physics, Feedback, Question" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" name="message" placeholder="Tell us more about how you'd like to get involved or ask your question here..." required></textarea>
+                </div>
+                <button type="submit">Send Message</button>
+            </form>
+
+        </div> <!-- End content-container -->
+    </div> <!-- End main-content -->
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2023 EduGenius - Engineering Learning Platform</p>
+        <div style="margin-top: 15px;">
+            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-instagram"></i></a>
+            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-youtube"></i></a>
+            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-telegram"></i></a>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        console.log("Join Us page loaded.");
+
+        // Placeholder for form submission feedback
+        const form = document.getElementById('join-us-form');
+        if(form) {
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent actual submission for this static example
+                alert('Thank you for your message! (Form submission functionality requires backend integration)');
+                // Optionally clear the form:
+                // form.reset();
+            });
+        }
+    </script>
+</body>
+</html>

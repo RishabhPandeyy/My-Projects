@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduGenius - Inadequacy of Classical Mechanics</title> <!-- Updated Title -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Modern Gradient UI - IDENTICAL STYLES */
+        :root { --primary: #6a11cb; --secondary: #2575fc; --glass: rgba(255, 255, 255, 0.2); --accent: #ff8a00; --header-height: 85px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { background: linear-gradient(45deg, #6a11cb, #2575fc); min-height: 100vh; color: white; }
+        .header { backdrop-filter: blur(10px); background: var(--glass); padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); position: sticky; top: 0; z-index: 999; height: var(--header-height); }
+        .logo { font-size: 28px; font-weight: 700; background: linear-gradient(to right, #fff, #ddd); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav a { color: white; text-decoration: none; margin-left: 20px; font-weight: 500; }
+
+        /* Sidebar Layout Styles - IDENTICAL */
+        .page-container { display: flex; padding: 30px 5%; gap: 30px; }
+        .sidebar { width: 300px; flex-shrink: 0; backdrop-filter: blur(10px); background: var(--glass); border-radius: 15px; padding: 25px; height: fit-content; max-height: calc(100vh - var(--header-height) - 60px); overflow-y: auto; position: sticky; top: calc(var(--header-height) + 30px); border: 1px solid rgba(255,255,255,0.1); }
+        .sidebar h2 { font-size: 20px; margin-bottom: 20px; color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 8px; display: inline-block; }
+        .sidebar ul { list-style: none; padding-left: 5px; }
+        .sidebar li { margin-bottom: 8px; }
+        .sidebar li.unit-heading { font-weight: 700; color: var(--accent); margin-top: 15px; margin-bottom: 10px; font-size: 16px; padding-left: 0; }
+        .sidebar li.unit-heading:first-child { margin-top: 0; }
+        /* Sidebar links point back to the main physics page sections */
+        .sidebar a { color: white; text-decoration: none; font-weight: 400; font-size: 14px; display: flex; align-items: center; gap: 8px; transition: color 0.3s, transform 0.3s; padding: 5px 0; padding-left: 15px; position: relative; }
+        .sidebar a::before { content: '\f111'; /* Generic bullet */ font-family: 'Font Awesome 6 Free'; font-weight: 900; font-size: 6px; position: absolute; left: 0; top: 50%; transform: translateY(-50%); color: var(--accent); opacity: 0.7; }
+        .sidebar a:hover { color: var(--accent); transform: translateX(3px); }
+
+        /* Content Area Styles - IDENTICAL */
+        .content-area { flex-grow: 1; backdrop-filter: blur(10px); background: var(--glass); border-radius: 15px; padding: 30px; border: 1px solid rgba(255,255,255,0.1); }
+        .content-area h1.page-title { font-size: 28px; margin-bottom: 30px; background: linear-gradient(to right, #fff, #ddd); -webkit-background-clip: text; -webkit-text-fill-color: transparent; border-bottom: 2px solid rgba(255,255,255,0.2); padding-bottom: 10px; }
+        /* Specific styling for the article content */
+        .article-section { margin-bottom: 30px; }
+        .article-section h3 { font-size: 22px; color: var(--accent); margin-bottom: 15px; padding-bottom: 5px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .article-section p { line-height: 1.7; margin-bottom: 15px; font-size: 16px; opacity: 0.9; }
+        .article-section ul { list-style: none; padding-left: 0; }
+        .article-section li { margin-bottom: 12px; line-height: 1.7; padding-left: 25px; position: relative; font-size: 16px; opacity: 0.9; padding-top: 5px; margin-top: -5px; }
+        .article-section li::before { content: '\f058'; /* Check circle */ font-family: 'Font Awesome 6 Free'; font-weight: 900; color: var(--accent); position: absolute; left: 0; top: 9px; font-size: 14px; }
+
+        /* Footer Styles - IDENTICAL */
+        .footer { text-align: center; padding: 30px 5%; margin-top: 50px; backdrop-filter: blur(10px); background: var(--glass); border-top: 1px solid rgba(255,255,255,0.1); }
+
+        /* Responsive Adjustments - IDENTICAL */
+        @media (max-width: 992px) { .page-container { flex-direction: column; } .sidebar { width: 100%; position: static; margin-bottom: 30px; max-height: 400px; } }
+        @media (max-width: 768px) { .header { padding: 15px 5%; height: auto; } .nav a { margin-left: 10px; font-size: 14px; } .logo { font-size: 24px; } .sidebar { padding: 20px; width: 100%; } .content-area { padding: 20px; } .content-area h1.page-title { font-size: 24px; } .article-section h3 { font-size: 20px; } }
+    </style>
+</head>
+<body>
+    <!-- Header - IDENTICAL -->
+    <header class="header">
+        <div class="logo">EduGenius</div>
+        <nav class="nav">
+            <a href="index.html" class="nav-link" data-page="home">Home</a>
+            <a href="index.html#engineering" class="nav-link" data-page="engineering">Engineering</a>
+            <a href="pyqs.html" class="nav-link" data-page="pyqs">PYQs</a>
+             <a href="practice.html" class="nav-link" data-page="practice">Practice</a>
+        </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <div id="main-content">
+        <div class="page-container">
+            <!-- Sidebar Navigation - Physics (Identical links to physics.html sections) -->
+            <aside class="sidebar">
+                <h2>Physics Topics</h2>
+                 <ul>
+                    <li class="unit-heading">Unit 1: Quantum Mechanics</li>
+                    <li><a href="physics.html#inadequacy-classical">Inadequacy of Classical Mech.</a></li>
+                    <li><a href="physics.html#plancks-theory">Planck’s Theory (Qual.)</a></li>
+                    <li><a href="physics.html#compton-effect">Compton Effect</a></li>
+                    <li><a href="physics.html#de-broglie">de-Broglie Matter Waves</a></li>
+                    <li><a href="physics.html#davisson-germer">Davisson & Germer Exp.</a></li>
+                    <li><a href="physics.html#phase-group-velocity">Phase & Group Velocity</a></li>
+                    <li><a href="physics.html#schrodinger-equations">Schrödinger Equations (T/TI)</a></li>
+                    <li><a href="physics.html#wave-function-interpretation">Wave Function Interpretation</a></li>
+                    <li><a href="physics.html#particle-1d-box">Particle in 1D Box</a></li>
+
+                    <li class="unit-heading">Unit 2: EM Field Theory</li>
+                    <li><a href="physics.html#stokes-divergence-theorems">Stoke’s & Divergence Theorems</a></li>
+                    <li><a href="physics.html#basic-em-laws">Basic Laws of E&M</a></li>
+                    <li><a href="physics.html#continuity-equation">Continuity Equation (Current)</a></li>
+                    <li><a href="physics.html#displacement-current">Displacement Current</a></li>
+                    <li><a href="physics.html#maxwell-equations">Maxwell Equations (Int/Diff)</a></li>
+                    <li><a href="physics.html#maxwell-vacuum-medium">Maxwell Eqns (Vac/Medium)</a></li>
+                    <li><a href="physics.html#poynting-vector-theorem">Poynting Vector & Theorem</a></li>
+                    <li><a href="physics.html#em-waves-vacuum">EM Waves in Vacuum</a></li>
+                    <li><a href="physics.html#em-waves-conducting">EM Waves in Conducting Medium</a></li>
+                    <li><a href="physics.html#skin-depth">Skin Depth</a></li>
+
+                    <li class="unit-heading">Unit 3: Wave Optics</li>
+                    <li><a href="physics.html#coherent-sources-optics">Coherent Sources</a></li>
+                    <li><a href="physics.html#interference-thin-films">Interference (Thin Films)</a></li>
+                    <li><a href="physics.html#extended-sources">Necessity of Extended Sources</a></li>
+                    <li><a href="physics.html#newtons-rings">Newton’s Rings & Apps</a></li>
+                    <li><a href="physics.html#diffraction-intro">Introduction to Diffraction</a></li>
+                    <li><a href="physics.html#fraunhoffer-single-slit">Fraunhoffer (Single Slit)</a></li>
+                    <li><a href="physics.html#fraunhoffer-double-slit">Fraunhoffer (Double Slit)</a></li>
+                    <li><a href="physics.html#absent-spectra">Absent Spectra</a></li>
+                    <li><a href="physics.html#diffraction-grating">Diffraction Grating</a></li>
+                    <li><a href="physics.html#grating-spectra">Spectra with Grating</a></li>
+                    <li><a href="physics.html#dispersive-power">Dispersive Power</a></li>
+                    <li><a href="physics.html#resolving-power">Resolving Power (Intro)</a></li>
+                    <li><a href="physics.html#rayleigh-criterion">Rayleigh’s Criterion</a></li>
+                    <li><a href="physics.html#resolving-power-grating">Resolving Power of Grating</a></li>
+
+                    <li class="unit-heading">Unit 4: Fiber Optics & Laser</li>
+                    <li><a href="physics.html#fiber-principle">Fiber Optics: Principle & Const.</a></li>
+                    <li><a href="physics.html#acceptance-angle">Acceptance Angle</a></li>
+                    <li><a href="physics.html#numerical-aperture">Numerical Aperture</a></li>
+                    <li><a href="physics.html#acceptance-cone">Acceptance Cone</a></li>
+                    <li><a href="physics.html#fiber-types">Step Index & Graded Index Fibers</a></li>
+                    <li><a href="physics.html#fiber-communication">Fiber Optic Communication</a></li>
+                    <li><a href="physics.html#fiber-attenuation">Attenuation</a></li>
+                    <li><a href="physics.html#fiber-dispersion">Dispersion</a></li>
+                    <li><a href="physics.html#fiber-applications">Application of Fiber</a></li>
+                    <li><a href="physics.html#laser-absorption">Absorption of Radiation</a></li>
+                    <li><a href="physics.html#laser-emission">Spontaneous & Stimulated Emission</a></li>
+                    <li><a href="physics.html#population-inversion">Population Inversion</a></li>
+                    <li><a href="physics.html#einsteins-coefficients">Einstein’s Coefficients</a></li>
+                    <li><a href="physics.html#laser-action-principle">Principles of Laser Action</a></li>
+                    <li><a href="physics.html#ruby-laser">Solid State Laser (Ruby)</a></li>
+                    <li><a href="physics.html#he-ne-laser">Gas Laser (He-Ne)</a></li>
+                    <li><a href="physics.html#laser-applications">Laser Applications</a></li>
+
+                    <li class="unit-heading">Unit 5: Superconductors & Nano</li>
+                    <li><a href="physics.html#superconductors-resistivity">Temp. Dependence of Resistivity</a></li>
+                    <li><a href="physics.html#meissner-effect">Meissner Effect</a></li>
+                    <li><a href="physics.html#critical-field">Temp. Dependence of Critical Field</a></li>
+                    <li><a href="physics.html#persistent-current">Persistent Current</a></li>
+                    <li><a href="physics.html#type1-type2-superconductors">Type I & Type II Superconductors</a></li>
+                    <li><a href="physics.html#high-temp-superconductors">High Temperature Superconductors</a></li>
+                    <li><a href="physics.html#superconductor-properties-apps">Properties & Apps of Superconductors</a></li>
+                    <li><a href="physics.html#nano-intro-properties">Intro & Properties of Nano Materials</a></li>
+                    <li><a href="physics.html#quantum-dots-wires-wells">Quantum Dots, Wires & Wells</a></li>
+                    <li><a href="physics.html#nano-fabrication-topdown">Fabrication (Top-Down: CVD)</a></li>
+                    <li><a href="physics.html#nano-fabrication-bottomup">Fabrication (Bottom-Up: Sol Gel)</a></li>
+                    <li><a href="physics.html#nano-properties-apps">Properties & Apps of Nano Materials</a></li>
+                </ul>
+            </aside>
+
+            <!-- Content Area: Article on Inadequacy of Classical Mechanics -->
+            <div class="content-area">
+                 <h1 class="page-title">Inadequacy of Classical Mechanics</h1>
+
+                 <section class="article-section" id="intro">
+                     <h3>Introduction: The Successes of Classical Physics</h3>
+                     <p>
+                         Classical mechanics, primarily encompassing Newtonian mechanics and Maxwell's theory of electromagnetism, was a monumental achievement in physics. It provided an incredibly successful framework for understanding the motion of macroscopic objects – from planets orbiting the sun to billiard balls colliding on a table. Likewise, classical electromagnetism perfectly described phenomena like light propagation, radio waves, and electrical circuits. For centuries, these theories reigned supreme, seemingly capable of explaining the entire physical world.
+                     </p>
+                     <p>
+                         Based on deterministic principles, classical physics assumed that if the initial state (position and momentum) of every particle in a system was known, its future behavior could be predicted with absolute certainty. It also treated energy as continuous, meaning it could take any value.
+                     </p>
+                 </section>
+
+                 <section class="article-section" id="failures">
+                     <h3>The Cracks Appear: Phenomena Unexplained</h3>
+                     <p>
+                         However, towards the end of the 19th and the beginning of the 20th century, experimental results emerged that starkly contradicted the predictions of classical mechanics and electromagnetism. These experiments, often probing phenomena at the atomic and subatomic level or involving the interaction of light and matter under specific conditions, revealed the limitations of the classical worldview. The inability of classical physics to explain these observations marked its inadequacy and paved the way for the quantum revolution.
+                     </p>
+                     <p>Key phenomena that classical mechanics failed to explain include:</p>
+                     <ul>
+                         <li>
+                             <strong>Blackbody Radiation:</strong> Classical physics (Rayleigh-Jeans Law) predicted that an ideal blackbody (a perfect absorber and emitter of radiation) should emit infinite energy at high frequencies (short wavelengths), especially in the ultraviolet range. This "ultraviolet catastrophe" was contrary to experimental observations, which showed that the energy peaked at a specific frequency and then decreased. Max Planck resolved this in 1900 by postulating that energy is quantized – emitted and absorbed in discrete packets (quanta) proportional to frequency (E=hν).
+                         </li>
+                         <li>
+                             <strong>Photoelectric Effect:</strong> When light shines on certain metals, electrons are ejected. Classical wave theory predicted that the kinetic energy of ejected electrons should depend on the light's intensity (brightness), and electron emission should occur for any frequency if the intensity is high enough, possibly after a time delay. Experiments showed, however, that electron energy depends only on the light's frequency, emission is instantaneous, and there's a minimum threshold frequency below which no electrons are emitted, regardless of intensity. Albert Einstein explained this in 1905 using Planck's quantum idea, proposing that light itself consists of particles (photons) with energy E=hν.
+                         </li>
+                         <li>
+                             <strong>Atomic Stability and Spectra:</strong> According to classical electromagnetism, an electron orbiting a nucleus should continuously radiate energy because it's an accelerating charge. This energy loss would cause it to spiral into the nucleus in a fraction of a second, making atoms unstable. Furthermore, the emitted radiation should be continuous, covering all frequencies. However, atoms are stable, and they emit light only at specific, discrete frequencies (line spectra), unique to each element. Niels Bohr's early quantum model (later refined by full quantum mechanics) proposed quantized electron orbits where electrons don't radiate, explaining stability and discrete spectra.
+                         </li>
+                         <li>
+                             <strong>Specific Heat of Solids:</strong> The classical Dulong-Petit law predicted that the molar specific heat of solids should be constant (around 3R) regardless of temperature. While roughly correct at high temperatures, experiments showed that specific heat decreases significantly at low temperatures, approaching zero as the temperature approaches absolute zero. Einstein and later Debye successfully explained this temperature dependence by applying quantization to the vibrations of atoms within the solid lattice.
+                         </li>
+                         <li>
+                             <strong>Compton Effect:</strong> When X-rays scatter off electrons, Arthur Compton observed in 1923 that the scattered X-rays had a longer wavelength (lower energy) than the incident X-rays, with the change depending on the scattering angle. Classical wave theory couldn't explain this wavelength shift. Compton explained it by treating X-rays as particles (photons) colliding with electrons, conserving energy and momentum in the collision, further cementing the particle nature of light.
+                         </li>
+                     </ul>
+                 </section>
+
+                 <section class="article-section" id="conclusion">
+                     <h3>Conclusion: The Dawn of Quantum Mechanics</h3>
+                     <p>
+                         These failures demonstrated conclusively that classical mechanics, while accurate for the macroscopic world, breaks down at the microscopic scale of atoms and electrons. The fundamental assumptions of continuous energy and deterministic trajectories were insufficient. The inability to explain blackbody radiation, the photoelectric effect, atomic stability, specific heats at low temperatures, and the Compton effect necessitated a radical new theory – Quantum Mechanics. This new framework, based on quantization, wave-particle duality, and probabilistic descriptions, successfully explained these phenomena and became the foundation for understanding the modern world of physics, chemistry, and technology.
+                     </p>
+                 </section>
+
+                 <p style="margin-top: 30px; font-size: 14px; opacity: 0.8;">
+                     <i>Note: This article provides an overview. Refer to specific topics in the syllabus for detailed study.</i>
+                 </p>
+
+            </div> <!-- End content-area -->
+        </div> <!-- End page-container -->
+    </div> <!-- End main-content -->
+
+    <!-- Footer - IDENTICAL -->
+    <footer class="footer">
+        <p>© 2023 EduGenius - Engineering Learning Platform</p>
+        <div style="margin-top: 15px;">
+            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-instagram"></i></a>
+            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-youtube"></i></a>
+            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-telegram"></i></a>
+        </div>
+    </footer>
+
+    <!-- JavaScript (Identical - Primarily for scroll adjustment on main physics page) -->
+    <script>
+        // DOM Elements (No auth elements needed)
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        // Simple Navigation (for header links back to index)
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                console.log(`Navigating via header link to: ${link.href}`);
+                // Allow default navigation
+            });
+        });
+
+        // Scroll adjustment logic - Less relevant here, but kept for theme consistency
+        // It would work if navigating *to* this page with a hash, or if internal hashes existed.
+        document.addEventListener('DOMContentLoaded', () => {
+            const adjustScrollForHeader = () => {
+                const hash = window.location.hash;
+                if (hash) {
+                    try {
+                         const targetElement = document.querySelector(hash);
+                         if (targetElement) {
+                            const header = document.querySelector('.header');
+                            const headerOffset = (header ? header.offsetHeight : 85) + 30; // Header height + buffer
+                            const elementPosition = targetElement.getBoundingClientRect().top;
+                            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                        }
+                    } catch (e) { console.error("Error finding element for hash:", hash, e); }
+                }
+            };
+            // Trigger adjustment if page loads with a hash
+            if (window.location.hash) { setTimeout(adjustScrollForHeader, 100); }
+            // Trigger adjustment if hash changes (e.g., clicking sidebar link on main page)
+             window.addEventListener('hashchange', () => {
+                 // Check if the hashchange happened *on this page*
+                 // If links point away, this won't fire after navigation.
+                 // If links are internal, it will.
+                 setTimeout(adjustScrollForHeader, 0);
+             });
+        });
+    </script>
+</body>
+</html>

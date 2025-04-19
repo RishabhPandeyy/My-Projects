@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduGenius - Programming for Problem Solving (PPS) Syllabus</title> <!-- Title Updated -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Modern Gradient UI - IDENTICAL STYLES TO physics.html */
+        :root { --primary: #6a11cb; --secondary: #2575fc; --glass: rgba(255, 255, 255, 0.2); --accent: #ff8a00; --header-height: 85px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { background: linear-gradient(45deg, #6a11cb, #2575fc); min-height: 100vh; color: white; }
+        .header { backdrop-filter: blur(10px); background: var(--glass); padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); position: sticky; top: 0; z-index: 999; height: var(--header-height); }
+        .logo { font-size: 28px; font-weight: 700; background: linear-gradient(to right, #fff, #ddd); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav a { color: white; text-decoration: none; margin-left: 20px; font-weight: 500; }
+
+        /* Sidebar Layout Styles - IDENTICAL TO physics.html */
+        .page-container { display: flex; padding: 30px 5%; gap: 30px; }
+        .sidebar { width: 300px; flex-shrink: 0; backdrop-filter: blur(10px); background: var(--glass); border-radius: 15px; padding: 25px; height: fit-content; max-height: calc(100vh - var(--header-height) - 60px); overflow-y: auto; position: sticky; top: calc(var(--header-height) + 30px); border: 1px solid rgba(255,255,255,0.1); }
+        .sidebar h2 { font-size: 20px; margin-bottom: 20px; color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 8px; display: inline-block; }
+        .sidebar ul { list-style: none; padding-left: 5px; }
+        .sidebar li { margin-bottom: 8px; }
+        .sidebar li.unit-heading { font-weight: 700; color: var(--accent); margin-top: 15px; margin-bottom: 10px; font-size: 16px; padding-left: 0; }
+        .sidebar li.unit-heading:first-child { margin-top: 0; }
+        .sidebar a { color: white; text-decoration: none; font-weight: 400; font-size: 14px; display: flex; align-items: center; gap: 8px; transition: color 0.3s, transform 0.3s; padding: 5px 0; padding-left: 15px; position: relative; }
+        .sidebar a::before { content: '\f111'; font-family: 'Font Awesome 6 Free'; font-weight: 900; font-size: 6px; position: absolute; left: 0; top: 50%; transform: translateY(-50%); color: var(--accent); opacity: 0.7; }
+        .sidebar a:hover { color: var(--accent); transform: translateX(3px); }
+
+        /* Content Area Styles - IDENTICAL TO physics.html (using h4 for sub-units) */
+        .content-area { flex-grow: 1; backdrop-filter: blur(10px); background: var(--glass); border-radius: 15px; padding: 30px; border: 1px solid rgba(255,255,255,0.1); }
+        .content-area h1.page-title { font-size: 28px; margin-bottom: 30px; background: linear-gradient(to right, #fff, #ddd); -webkit-background-clip: text; -webkit-text-fill-color: transparent; border-bottom: 2px solid rgba(255,255,255,0.2); padding-bottom: 10px; }
+        .content-area section { margin-bottom: 40px; padding-top: calc(var(--header-height) + 30px); margin-top: calc(-1 * (var(--header-height) + 30px)); }
+        .content-area h3.unit-title { margin-bottom: 20px; font-size: 22px; color: var(--accent); position: relative; padding-bottom: 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .content-area h4.sub-unit-title { font-size: 18px; font-weight: 600; margin-top: 25px; margin-bottom: 15px; color: #eee; }
+        .content-area ul { list-style: none; padding-left: 0; }
+        .content-area li { margin-bottom: 12px; line-height: 1.7; padding-left: 25px; position: relative; font-size: 16px; opacity: 0.9; padding-top: 5px; margin-top: -5px; }
+        .content-area li::before { content: '\f111'; /* Small circle for PPS */ font-family: 'Font Awesome 6 Free'; font-weight: 900; color: var(--accent); position: absolute; left: 0; top: 9px; font-size: 8px; } /* Adjusted bullet */
+
+        /* Footer Styles - IDENTICAL */
+        .footer { text-align: center; padding: 30px 5%; margin-top: 50px; backdrop-filter: blur(10px); background: var(--glass); border-top: 1px solid rgba(255,255,255,0.1); }
+
+        /* Auth Modal Styles - IDENTICAL */
+        .auth-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center; }
+        .auth-container { background: linear-gradient(45deg, #6a11cb, #2575fc); padding: 30px; border-radius: 15px; width: 90%; max-width: 400px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); position: relative; }
+        .close-btn { position: absolute; top: 15px; right: 15px; font-size: 24px; cursor: pointer; color: white; }
+        .auth-title { text-align: center; margin-bottom: 25px; font-size: 28px; background: linear-gradient(to right, #fff, #ddd); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .auth-form .form-group { margin-bottom: 20px; }
+        .auth-form label { display: block; margin-bottom: 8px; font-weight: 500; }
+        .auth-form input { width: 100%; padding: 12px 15px; border-radius: 8px; border: none; background: rgba(255,255,255,0.9); font-size: 16px; color: #333; }
+        .auth-form button { width: 100%; padding: 12px; border-radius: 8px; border: none; background: linear-gradient(to right, var(--accent), #da1b60); color: white; font-weight: 600; cursor: pointer; font-size: 16px; margin-top: 10px; }
+        .auth-form button:hover { opacity: 0.9; }
+        .auth-link { text-align: center; margin-top: 15px; }
+        .auth-link a { color: var(--accent); text-decoration: none; font-weight: 500; }
+        .error-message { color: #ff6b6b; text-align: center; margin-bottom: 15px; font-size: 14px; }
+        .success-message { color: #51cf66; text-align: center; margin-bottom: 15px; font-size: 14px; }
+
+        /* Responsive Adjustments - IDENTICAL */
+        @media (max-width: 992px) { .page-container { flex-direction: column; } .sidebar { width: 100%; position: static; margin-bottom: 30px; max-height: 400px; } }
+        @media (max-width: 768px) { .header { padding: 15px 5%; height: auto; } .nav a { margin-left: 10px; font-size: 14px; } .logo { font-size: 24px; } .sidebar { padding: 20px; width: 100%; } .content-area { padding: 20px; } .content-area h1.page-title { font-size: 24px; } .content-area h3.unit-title { font-size: 20px; } .content-area h4.sub-unit-title { font-size: 17px; } .content-area section { padding-top: 90px; margin-top: -90px; } }
+
+    </style>
+</head>
+<body>
+    <!-- Header - IDENTICAL -->
+    <header class="header"> <div class="logo">EduGenius</div> <nav class="nav"> <a href="index.html" class="nav-link" data-page="home">Home</a> <a href="index.html#engineering" class="nav-link" data-page="engineering">Engineering</a> <a href="index.html#pyqs" class="nav-link" data-page="pyqs">PYQs</a> <a href="#" class="nav-link" id="login-link">Login</a> </nav> </header>
+
+    <!-- Main Content Area with Detailed Sidebar -->
+    <div id="main-content">
+        <div class="page-container">
+            <!-- Sidebar Navigation - DETAILED for PPS -->
+            <aside class="sidebar">
+                <h2>PPS Topics</h2> <!-- Sidebar Title Updated -->
+                <ul>
+                    <li class="unit-heading">Unit I: Intro to Programming</li>
+                    <li><a href="#computer-system">Computer System & Components</a></li>
+                    <li><a href="#computing-environments">Computing Environments</a></li>
+                    <li><a href="#computer-languages">Computer Languages</a></li>
+                    <li><a href="#creating-running-programs">Creating & Running Programs</a></li>
+                    <li><a href="#algorithms">Algorithms</a></li>
+                    <li><a href="#flowcharts">Flowcharts</a></li>
+                    <li><a href="#c-history-structure">C History & Basic Structure</a></li>
+                    <li><a href="#compiling-running-c">Compiling & Running C</a></li>
+                    <li><a href="#c-tokens">C Tokens</a></li>
+                    <li><a href="#variables-datatypes">Variables & Data Types</a></li>
+                    <li><a href="#c-input-output">Input/Output Statements</a></li>
+
+                    <li class="unit-heading">Unit II: Operators & Control</li>
+                    <li><a href="#c-operators">Operators (All types)</a></li>
+                    <li><a href="#operator-precedence">Operator Precedence & Assoc.</a></li>
+                    <li><a href="#expression-evaluation">Evaluation of Expressions</a></li>
+                    <li><a href="#type-conversions">Type Conversions</a></li>
+                    <li><a href="#decision-statements">Decision Statements (if, switch)</a></li>
+                    <li><a href="#loop-control">Loop Control (while, for, do-while)</a></li>
+                    <li><a href="#jump-statements">Jump Statements (break, continue, goto)</a></li>
+
+                    <li class="unit-heading">Unit III: Arrays & Functions</li>
+                    <li><a href="#1d-arrays">1-D Arrays</a></li>
+                    <li><a href="#2d-arrays">2-D Arrays</a></li>
+                    <li><a href="#multi-d-arrays">Multidimensional Arrays</a></li>
+                    <li><a href="#searching-algorithms">Searching Algorithms</a></li>
+                    <li><a href="#sorting-algorithms">Sorting Algorithms (Bubble, Insert, Select)</a></li>
+                    <li><a href="#functions-intro">User-defined & Built-in Functions</a></li>
+                    <li><a href="#storage-classes">Storage Classes</a></li>
+                    <li><a href="#parameter-passing">Parameter Passing (Value/Reference)</a></li>
+                    <li><a href="#passing-arrays-functions">Passing Arrays to Functions</a></li>
+                    <li><a href="#recursion">Recursion (Examples listed)</a></li>
+
+                    <li class="unit-heading">Unit IV: Strings & Pointers</li>
+                    <li><a href="#strings-char-arrays">Strings as Character Arrays</a></li>
+                    <li><a href="#variable-length-strings">Variable-Length Strings</a></li>
+                    <li><a href="#string-input">Inputting Strings</a></li>
+                    <li><a href="#char-library-functions">Character Library Functions</a></li>
+                    <li><a href="#string-handling-functions">String Handling Functions</a></li>
+                    <li><a href="#pointers-basics">Pointer Basics & Arithmetic</a></li>
+                    <li><a href="#pointers-to-pointers">Pointers to Pointers</a></li>
+                    <li><a href="#generic-pointers">Generic Pointers</a></li>
+                    <li><a href="#array-of-pointers">Array of Pointers</a></li>
+                    <li><a href="#functions-returning-pointers">Functions Returning Pointers</a></li>
+                    <li><a href="#dynamic-memory-allocation">Dynamic Memory Allocation</a></li>
+
+                    <li class="unit-heading">Unit V: Structures & Files</li>
+                    <li><a href="#structure-definition">Structure Definition, Init, Access</a></li>
+                    <li><a href="#nested-structures">Nested Structures</a></li>
+                    <li><a href="#array-of-structures">Arrays of Structures</a></li>
+                    <li><a href="#structures-functions">Structures and Functions</a></li>
+                    <li><a href="#self-referential-structures">Self-Referential Structures</a></li>
+                    <li><a href="#unions">Unions</a></li>
+                    <li><a href="#typedef-enums">Typedef and Enumerations</a></li>
+                    <li><a href="#command-line-args">Command-Line Arguments</a></li>
+                    <li><a href="#file-modes">File Modes</a></li>
+                    <li><a href="#file-operations">Basic File Operations (read, write, append)</a></li>
+                </ul>
+            </aside>
+
+            <!-- Syllabus Content -->
+            <div class="content-area">
+                 <!-- Page Title Updated -->
+                 <h1 class="page-title">Programming for Problem Solving (BCS101/BCS201) Syllabus - AKTU</h1>
+
+                <!-- Section for each Unit with IDs on list items -->
+                <section id="unit1">
+                    <h3 class="unit-title">Unit I: Introduction to Programming</h3>
+
+                    <h4 class="sub-unit-title">Computer Fundamentals</h4>
+                    <ul>
+                        <li id="computer-system">Computer system and its components</li>
+                        <li id="computing-environments">Computing environments</li>
+                        <li id="computer-languages">Computer languages</li>
+                        <li id="creating-running-programs">Creating and running programs</li>
+                    </ul>
+
+                    <h4 class="sub-unit-title">Problem-Solving Techniques</h4>
+                    <ul>
+                        <li id="algorithms">Algorithms</li>
+                        <li id="flowcharts">Flowcharts</li>
+                    </ul>
+
+                    <h4 class="sub-unit-title">Introduction to C Language</h4>
+                    <ul>
+                        <li id="c-history-structure">History and basic structure of C programs</li>
+                        <li id="compiling-running-c">Process of compiling and running a C program</li>
+                        <li id="c-tokens">C tokens: keywords, identifiers, constants, strings, special symbols</li>
+                        <li id="variables-datatypes">Variables and data types</li>
+                        <li id="c-input-output">Input/output statements</li>
+                    </ul>
+                </section>
+
+                <section id="unit2">
+                    <h3 class="unit-title">Unit II: Operators, Expressions, and Control Structures</h3>
+
+                    <h4 class="sub-unit-title">Operators and Expressions</h4>
+                     <ul>
+                        <li id="c-operators">Arithmetic, relational, logical, assignment, increment/decrement, bitwise, conditional, and special operators</li>
+                        <li id="operator-precedence">Operator precedence and associativity</li>
+                        <li id="expression-evaluation">Evaluation of expressions</li>
+                        <li id="type-conversions">Type conversions in expressions</li>
+                    </ul>
+
+                     <h4 class="sub-unit-title">Control Structures</h4>
+                    <ul>
+                        <li id="decision-statements">Decision statements: if, if-else, nested if-else, switch</li>
+                        <li id="loop-control">Loop control statements: while, for, do-while</li>
+                        <li id="jump-statements">Jump statements: break, continue, goto</li>
+                    </ul>
+                </section>
+
+                <section id="unit3">
+                    <h3 class="unit-title">Unit III: Arrays and Functions</h3>
+
+                    <h4 class="sub-unit-title">Arrays</h4>
+                    <ul>
+                        <li id="1d-arrays">One-dimensional arrays: declaration, initialization, and operations</li>
+                        <li id="2d-arrays">Two-dimensional arrays: declaration, initialization, and operations</li>
+                        <li id="multi-d-arrays">Multidimensional arrays</li>
+                    </ul>
+
+                    <h4 class="sub-unit-title">Basic Algorithms</h4>
+                    <ul>
+                        <li id="searching-algorithms">Searching algorithms</li>
+                        <li id="sorting-algorithms">Sorting algorithms: bubble sort, insertion sort, selection sort</li>
+                     </ul>
+
+                    <h4 class="sub-unit-title">Functions</h4>
+                     <ul>
+                        <li id="functions-intro">User-defined and built-in functions</li>
+                        <li id="storage-classes">Storage classes</li>
+                        <li id="parameter-passing">Parameter passing: call by value, call by reference</li>
+                        <li id="passing-arrays-functions">Passing arrays to functions</li>
+                        <li id="recursion">Recursion: factorial, Fibonacci series, Ackermann function, quick sort, merge sort</li>
+                    </ul>
+                </section>
+
+                <section id="unit4">
+                    <h3 class="unit-title">Unit IV: Strings and Pointers</h3>
+
+                    <h4 class="sub-unit-title">Strings</h4>
+                    <ul>
+                        <li id="strings-char-arrays">Arrays of characters</li>
+                        <li id="variable-length-strings">Variable-length character strings</li>
+                        <li id="string-input">Inputting character strings</li>
+                        <li id="char-library-functions">Character library functions</li>
+                        <li id="string-handling-functions">String handling functions</li>
+                    </ul>
+
+                     <h4 class="sub-unit-title">Pointers</h4>
+                     <ul>
+                        <li id="pointers-basics">Pointer basics and arithmetic</li>
+                        <li id="pointers-to-pointers">Pointers to pointers</li>
+                        <li id="generic-pointers">Generic pointers</li>
+                        <li id="array-of-pointers">Array of pointers</li>
+                        <li id="functions-returning-pointers">Functions returning pointers</li>
+                        <li id="dynamic-memory-allocation">Dynamic memory allocation</li>
+                    </ul>
+                </section>
+
+                <section id="unit5">
+                    <h3 class="unit-title">Unit V: Structures and File Handling</h3>
+
+                     <h4 class="sub-unit-title">Structures and Unions</h4>
+                    <ul>
+                        <li id="structure-definition">Structure definition, initialization, and accessing</li>
+                        <li id="nested-structures">Nested structures</li>
+                        <li id="array-of-structures">Arrays of structures</li>
+                        <li id="structures-functions">Structures and functions</li>
+                        <li id="self-referential-structures">Self-referential structures</li>
+                        <li id="unions">Unions</li>
+                        <li id="typedef-enums">Typedef and enumerations</li>
+                    </ul>
+
+                    <h4 class="sub-unit-title">File Handling</h4>
+                     <ul>
+                        <li id="command-line-args">Command-line arguments</li>
+                        <li id="file-modes">File modes</li>
+                        <li id="file-operations">Basic file operations: read, write, append</li>
+                    </ul>
+                 </section>
+
+                 <p style="margin-top: 30px; font-size: 14px; opacity: 0.8;">
+                     <i>Note: This syllabus (BCS101/BCS201) is based on the AKTU curriculum. Refer to official sources for the most current version.</i>
+                 </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer - IDENTICAL -->
+    <footer class="footer"> <p>© 2023 EduGenius - Engineering Learning Platform</p> <div style="margin-top: 15px;"> <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-instagram"></i></a> <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-youtube"></i></a> <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-telegram"></i></a> </div> </footer>
+
+    <!-- Auth Modals - IDENTICAL -->
+    <div class="auth-modal" id="login-modal"> <div class="auth-container"> <span class="close-btn" id="close-login">×</span> <h2 class="auth-title">Login</h2> <div id="login-error" class="error-message"></div> <form class="auth-form" id="login-form"> <div class="form-group"> <label for="login-email">Email</label> <input type="email" id="login-email" required> </div> <div class="form-group"> <label for="login-password">Password</label> <input type="password" id="login-password" required> </div> <button type="submit">Login</button> </form> <div class="auth-link"> Don't have an account? <a href="#" id="show-signup">Sign up</a> </div> </div> </div>
+    <div class="auth-modal" id="signup-modal"> <div class="auth-container"> <span class="close-btn" id="close-signup">×</span> <h2 class="auth-title">Sign Up</h2> <div id="signup-error" class="error-message"></div> <div id="signup-success" class="success-message"></div> <form class="auth-form" id="signup-form"> <div class="form-group"> <label for="signup-username">Username</label> <input type="text" id="signup-username" required> </div> <div class="form-group"> <label for="signup-email">Email</label> <input type="email" id="signup-email" required> </div> <div class="form-group"> <label for="signup-password">Password</label> <input type="password" id="signup-password" required> </div> <div class="form-group"> <label for="signup-confirm">Confirm Password</label> <input type="password" id="signup-confirm" required> </div> <button type="submit">Sign Up</button> </form> <div class="auth-link"> Already have an account? <a href="#" id="show-login">Login</a> </div> </div> </div>
+
+    <!-- JavaScript - IDENTICAL TO physics.html -->
+    <script>
+        // User data storage
+        if (!localStorage.getItem('users')) { localStorage.setItem('users', JSON.stringify([])); }
+
+        // DOM Elements
+        const loginLink = document.getElementById('login-link'); const loginModal = document.getElementById('login-modal'); const signupModal = document.getElementById('signup-modal'); const closeLogin = document.getElementById('close-login'); const closeSignup = document.getElementById('close-signup'); const showSignup = document.getElementById('show-signup'); const showLogin = document.getElementById('show-login'); const loginForm = document.getElementById('login-form'); const signupForm = document.getElementById('signup-form'); const loginError = document.getElementById('login-error'); const signupError = document.getElementById('signup-error'); const signupSuccess = document.getElementById('signup-success'); const navLinks = document.querySelectorAll('.nav-link:not(#login-link)'); let currentUser = null;
+
+        // Modal functions
+        function openModal(modal) { modal.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+        function closeModal(modal) { modal.style.display = 'none'; document.body.style.overflow = 'auto'; loginError.textContent = ''; signupError.textContent = ''; signupSuccess.textContent = ''; }
+
+        // Event Listeners for Modals
+        loginLink.addEventListener('click', (e) => { e.preventDefault(); if (currentUser) { currentUser = null; updateNavForUser(null); alert('Logged out successfully!'); } else { openModal(loginModal); } });
+        closeLogin.addEventListener('click', () => closeModal(loginModal)); closeSignup.addEventListener('click', () => closeModal(signupModal)); showSignup.addEventListener('click', (e) => { e.preventDefault(); closeModal(loginModal); openModal(signupModal); }); showLogin.addEventListener('click', (e) => { e.preventDefault(); closeModal(signupModal); openModal(loginModal); });
+
+        // Login Form Submission
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault(); const email = document.getElementById('login-email').value.trim(); const password = document.getElementById('login-password').value; loginError.textContent = ''; if (!email || !password) { loginError.textContent = 'Please enter email and password.'; return; } const users = JSON.parse(localStorage.getItem('users')); const user = users.find(u => u.email === email); if (!user) { loginError.textContent = 'No account found with that email.'; return; } if (user.password !== password) { loginError.textContent = 'Incorrect password.'; return; } currentUser = user; updateNavForUser(user); closeModal(loginModal); loginForm.reset(); alert(`Welcome back, ${user.username}!`);
+        });
+
+        // Signup Form Submission
+        signupForm.addEventListener('submit', (e) => {
+            e.preventDefault(); const username = document.getElementById('signup-username').value.trim(); const email = document.getElementById('signup-email').value.trim(); const password = document.getElementById('signup-password').value; const confirmPassword = document.getElementById('signup-confirm').value; signupError.textContent = ''; signupSuccess.textContent = ''; if (!username || !email || !password || !confirmPassword) { signupError.textContent = 'Please fill in all fields.'; return; } if (password !== confirmPassword) { signupError.textContent = 'Passwords do not match.'; return; } if (!/\S+@\S+\.\S+/.test(email)) { signupError.textContent = 'Please enter a valid email address.'; return; } if (password.length < 6) { signupError.textContent = 'Password must be at least 6 characters long.'; return; } const users = JSON.parse(localStorage.getItem('users')); if (users.some(u => u.email === email)) { signupError.textContent = 'An account with this email already exists.'; return; } if (users.some(u => u.username === username)) { signupError.textContent = 'This username is already taken.'; return; } const newUser = { username, email, password }; users.push(newUser); localStorage.setItem('users', JSON.stringify(users)); signupSuccess.textContent = 'Account created successfully! You can now log in.'; signupForm.reset(); setTimeout(() => { closeModal(signupModal); openModal(loginModal); document.getElementById('login-email').value = email; }, 2000);
+        });
+
+        // Update navigation based on user status
+        function updateNavForUser(user) { if (user) { loginLink.textContent = `Logout (${user.username})`; } else { loginLink.textContent = 'Login'; } }
+
+        // Simple Navigation (for header links back to index)
+        navLinks.forEach(link => { link.addEventListener('click', (e) => { console.log(`Navigating via header link to: ${link.href}`); }); });
+
+        // Initial check on page load (Scroll Adjustment Logic)
+        document.addEventListener('DOMContentLoaded', () => {
+            updateNavForUser(currentUser);
+            const adjustScrollForHeader = () => {
+                const hash = window.location.hash;
+                if (hash) {
+                    try {
+                         const targetElement = document.querySelector(hash);
+                         if (targetElement) {
+                            const header = document.querySelector('.header');
+                            const headerOffset = (header ? header.offsetHeight : 85) + 30;
+                            const elementPosition = targetElement.getBoundingClientRect().top;
+                            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                        }
+                    } catch (e) { console.error("Error finding element for hash:", hash, e); }
+                }
+            };
+            if (window.location.hash) { setTimeout(adjustScrollForHeader, 100); }
+            window.addEventListener('hashchange', () => { setTimeout(adjustScrollForHeader, 0); });
+        });
+    </script>
+</body>
+</html>

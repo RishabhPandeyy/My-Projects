@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduGenius - Engineering Chemistry Syllabus (New)</title> <!-- Updated Title -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Modern Gradient UI - IDENTICAL STYLES */
+        :root { --primary: #6a11cb; --secondary: #2575fc; --glass: rgba(255, 255, 255, 0.2); --accent: #ff8a00; --header-height: 85px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { background: linear-gradient(45deg, #6a11cb, #2575fc); min-height: 100vh; color: white; }
+        .header { backdrop-filter: blur(10px); background: var(--glass); padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); position: sticky; top: 0; z-index: 999; height: var(--header-height); }
+        .logo { font-size: 28px; font-weight: 700; background: linear-gradient(to right, #fff, #ddd); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav a { color: white; text-decoration: none; margin-left: 20px; font-weight: 500; }
+
+        /* Sidebar Layout Styles - IDENTICAL */
+        .page-container { display: flex; padding: 30px 5%; gap: 30px; }
+        .sidebar { width: 300px; flex-shrink: 0; backdrop-filter: blur(10px); background: var(--glass); border-radius: 15px; padding: 25px; height: fit-content; max-height: calc(100vh - var(--header-height) - 60px); overflow-y: auto; position: sticky; top: calc(var(--header-height) + 30px); border: 1px solid rgba(255,255,255,0.1); }
+        .sidebar h2 { font-size: 20px; margin-bottom: 20px; color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 8px; display: inline-block; }
+        .sidebar ul { list-style: none; padding-left: 5px; }
+        .sidebar li { margin-bottom: 8px; }
+        .sidebar li.unit-heading { font-weight: 700; color: var(--accent); margin-top: 15px; margin-bottom: 10px; font-size: 16px; padding-left: 0; }
+        .sidebar li.unit-heading:first-child { margin-top: 0; }
+        .sidebar a { color: white; text-decoration: none; font-weight: 400; font-size: 14px; display: flex; align-items: center; gap: 8px; transition: color 0.3s, transform 0.3s; padding: 5px 0; padding-left: 15px; position: relative; }
+        .sidebar a::before { content: '\f0c3'; /* Font Awesome Flask */ font-family: 'Font Awesome 6 Free'; font-weight: 900; font-size: 8px; position: absolute; left: 0; top: 50%; transform: translateY(-50%); color: var(--accent); opacity: 0.7; } /* Icon Changed */
+        .sidebar a:hover { color: var(--accent); transform: translateX(3px); }
+
+        /* Content Area Styles - IDENTICAL */
+        .content-area { flex-grow: 1; backdrop-filter: blur(10px); background: var(--glass); border-radius: 15px; padding: 30px; border: 1px solid rgba(255,255,255,0.1); }
+        .content-area h1.page-title { font-size: 28px; margin-bottom: 30px; background: linear-gradient(to right, #fff, #ddd); -webkit-background-clip: text; -webkit-text-fill-color: transparent; border-bottom: 2px solid rgba(255,255,255,0.2); padding-bottom: 10px; }
+        .content-area section { margin-bottom: 40px; padding-top: calc(var(--header-height) + 30px); margin-top: calc(-1 * (var(--header-height) + 30px)); }
+        .content-area h3.unit-title { margin-bottom: 20px; font-size: 22px; color: var(--accent); position: relative; padding-bottom: 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .content-area h4.sub-unit-title { font-size: 18px; font-weight: 600; margin-top: 25px; margin-bottom: 15px; color: #eee; }
+        .content-area ul { list-style: none; padding-left: 0; }
+        .content-area li { margin-bottom: 12px; line-height: 1.7; padding-left: 25px; position: relative; font-size: 16px; opacity: 0.9; padding-top: 5px; margin-top: -5px; }
+        .content-area li::before { content: '\f0c3'; /* Font Awesome Flask */ font-family: 'Font Awesome 6 Free'; font-weight: 900; color: var(--accent); position: absolute; left: 0; top: 9px; font-size: 10px; } /* Icon Changed */
+
+        /* Footer Styles - IDENTICAL */
+        .footer { text-align: center; padding: 30px 5%; margin-top: 50px; backdrop-filter: blur(10px); background: var(--glass); border-top: 1px solid rgba(255,255,255,0.1); }
+
+        /* Responsive Adjustments - IDENTICAL */
+        @media (max-width: 992px) { .page-container { flex-direction: column; } .sidebar { width: 100%; position: static; margin-bottom: 30px; max-height: 400px; } }
+        @media (max-width: 768px) { .header { padding: 15px 5%; height: auto; } .nav a { margin-left: 10px; font-size: 14px; } .logo { font-size: 24px; } .sidebar { padding: 20px; width: 100%; } .content-area { padding: 20px; } .content-area h1.page-title { font-size: 24px; } .content-area h3.unit-title { font-size: 20px; } .content-area h4.sub-unit-title { font-size: 17px; } .content-area section { padding-top: 90px; margin-top: -90px; } }
+    </style>
+</head>
+<body>
+    <!-- Header - Login link REMOVED -->
+    <header class="header">
+        <div class="logo">EduGenius</div>
+        <nav class="nav">
+            <a href="index.html" class="nav-link" data-page="home">Home</a>
+            <a href="index.html#engineering" class="nav-link" data-page="engineering">Engineering</a>
+            <a href="pyqs.html" class="nav-link" data-page="pyqs">PYQs</a>
+            <a href="practice.html" class="nav-link" data-page="practice">Practice</a>
+        </nav>
+    </header>
+
+    <!-- Main Content Area with Detailed Sidebar -->
+    <div id="main-content">
+        <div class="page-container">
+            <!-- Sidebar Navigation - Chemistry (New Syllabus) -->
+            <aside class="sidebar">
+                <h2>Chemistry Topics</h2>
+                 <ul>
+                    <li class="unit-heading">Unit 1: Structure & Materials</li>
+                    <li><a href="#mo-diatomic">Molecular Orbitals (Diatomic)</a></li>
+                    <li><a href="#bond-order-magnetic">Bond Order & Magnetic Chars.</a></li>
+                    <li><a href="#liquid-crystals-intro">Liquid Crystals: Intro & Types</a></li>
+                    <li><a href="#liquid-crystals-apps">Liquid Crystals: Apps & Materials</a></li>
+                    <li><a href="#graphite-fullerene">Graphite & Fullerene</a></li>
+                    <li><a href="#nanomaterials-intro">Nanomaterials: Intro & Prep.</a></li>
+                    <li><a href="#nanomaterials-char-apps">Nanomaterials: Chars. & Apps</a></li>
+                    <li><a href="#cnt">Carbon Nano Tubes (CNT)</a></li>
+                    <li><a href="#green-chem-intro">Green Chemistry: Intro & Principles</a></li>
+                    <li><a href="#green-chem-importance">Green Chem: Importance & Chems</a></li>
+                    <li><a href="#green-synthesis">Green Synthesis Examples</a></li>
+                    <li><a href="#green-chem-impact">Green Chem: Environmental Impact</a></li>
+
+                    <li class="unit-heading">Unit 2: Spectroscopy & StereoChem</li>
+                    <li><a href="#spectroscopy-uv-ir-nmr">Spectroscopy Apps (UV, IR, NMR)</a></li>
+                    <li><a href="#spectroscopy-numerical">Spectroscopy Numerical Problems</a></li>
+                    <li><a href="#optical-isomerism-no-chiral">Optical Isomerism (No Chiral C)</a></li>
+                    <li><a href="#geometrical-isomerism">Geometrical Isomerism</a></li>
+                    <li><a href="#chiral-drugs">Chiral Drugs</a></li>
+
+                    <li class="unit-heading">Unit 3: ElectroChem, Corrosion, Materials</li>
+                    <li><a href="#electrochem-basics">Electrochemistry Basics</a></li>
+                    <li><a href="#batteries-primary">Batteries: Primary (Dry Cell)</a></li>
+                    <li><a href="#batteries-secondary">Batteries: Secondary (Lead Acid)</a></li>
+                    <li><a href="#corrosion-intro-types">Corrosion: Intro & Types</a></li>
+                    <li><a href="#corrosion-cause-prevention">Corrosion: Cause & Prevention</a></li>
+                    <li><a href="#corrosion-industry-issues">Corrosion Issues in Industry</a></li>
+                    <li><a href="#cement-mfg">Cement: Mfg. & Constituents</a></li>
+                    <li><a href="#cement-setting-hardening">Cement: Setting & Hardening</a></li>
+                    <li><a href="#cement-deterioration">Cement: Deterioration</a></li>
+                    <li><a href="#pop">Plaster of Paris (POP)</a></li>
+
+                    <li class="unit-heading">Unit 4: Water Tech & Fuels</li>
+                    <li><a href="#water-sources-impurities">Water: Sources & Impurities</a></li>
+                    <li><a href="#water-hardness">Water Hardness</a></li>
+                    <li><a href="#boiler-troubles">Boiler Troubles</a></li>
+                    <li><a href="#water-softening-techniques">Water Softening Techniques</a></li>
+                    <li><a href="#hardness-alkalinity-determination">Determination: Hardness & Alkalinity</a></li>
+                    <li><a href="#water-numerical">Water Tech Numerical Problems</a></li>
+                    <li><a href="#fuels-classification-chars">Fuels: Classification & Chars.</a></li>
+                    <li><a href="#calorific-values">Calorific Values (Gross/Net)</a></li>
+                    <li><a href="#bomb-calorimeter">Bomb Calorimeter</a></li>
+                    <li><a href="#dulongs-method">Dulong’s Method</a></li>
+                    <li><a href="#coal-ranking-analysis">Coal: Ranking & Analysis</a></li>
+                    <li><a href="#fuels-numerical">Fuels Numerical Problems</a></li>
+                    <li><a href="#biogas-production">Biogas Production & Impact</a></li>
+
+                    <li class="unit-heading">Unit 5: Materials Chemistry</li>
+                    <li><a href="#polymer-classification">Polymers: Classification</a></li>
+                    <li><a href="#polymerization-processes">Polymerization Processes</a></li>
+                    <li><a href="#thermoset-thermoplastic">Thermosetting & Thermoplastic</a></li>
+                    <li><a href="#polymer-blends-composites">Polymer Blends & Composites</a></li>
+                    <li><a href="#conducting-biodegradable-polymers">Conducting & Biodegradable</a></li>
+                    <li><a href="#specific-polymers">Specific Polymers (Teflon, etc.)</a></li>
+                    <li><a href="#polymers-impact">Polymers: Environmental Impact</a></li>
+                    <li><a href="#speciality-polymers">Speciality Polymers</a></li>
+                    <li><a href="#organometallic-prep">Organometallic: Preparation</a></li>
+                    <li><a href="#organometallic-apps">Organometallic: Applications</a></li>
+                 </ul>
+            </aside>
+
+            <!-- Syllabus Content - Using NEW Chemistry Syllabus -->
+            <div class="content-area">
+                 <h1 class="page-title">Engineering Chemistry Syllabus (New Curriculum) - AKTU</h1>
+
+                <!-- Section for each Unit -->
+                <section id="unit1">
+                    <h3 class="unit-title">Unit 1: Atomic and Molecular Structure & Chemistry of Advanced Materials</h3>
+
+                    <h4 class="sub-unit-title">Atomic and Molecular Structure</h4>
+                    <ul>
+                        <li id="mo-diatomic">Molecular orbital’s of diatomic molecules</li>
+                        <li id="bond-order-magnetic">Bond Order, Magnetic characters and numerical problems</li>
+                    </ul>
+
+                    <h4 class="sub-unit-title">Chemistry of Advanced Materials</h4>
+                     <ul>
+                        <li id="liquid-crystals-intro">Liquid Crystals; Introduction, Types</li>
+                        <li id="liquid-crystals-apps">Applications of liquid crystals, Industrially important materials used as liquid crystals</li>
+                        <li id="graphite-fullerene">Graphite and Fullerene; Introduction, Structure and applications</li>
+                        <li id="nanomaterials-intro">Nanomaterials; Introduction, Preparation</li>
+                        <li id="nanomaterials-char-apps">Characteristics of nanomaterials and applications of nanomaterials</li>
+                        <li id="cnt">Carbon Nano Tubes (CNT)</li>
+                    </ul>
+
+                     <h4 class="sub-unit-title">Green Chemistry</h4>
+                     <ul>
+                        <li id="green-chem-intro">Introduction</li>
+                        <li id="green-chem-principles">12 principles</li>
+                        <li id="green-chem-importance">Importance of green Synthesis, Green Chemicals</li>
+                        <li id="green-synthesis">Synthesis of typical organic compounds by conventional and Green route (Adipic acid and Paracetamol)</li>
+                        <li id="green-chem-impact">Environmental impact of Green chemistry on society</li>
+                    </ul>
+                </section>
+
+                <section id="unit2">
+                    <h3 class="unit-title">Unit 2: Spectroscopic Techniques and Applications & Stereochemistry</h3>
+
+                     <h4 class="sub-unit-title">Spectroscopic Techniques and Applications</h4>
+                    <ul>
+                        <li id="spectroscopy-uv-ir-nmr">Elementary idea and simple applications of UV, IR and NMR</li>
+                        <li id="spectroscopy-numerical">Numerical problems</li>
+                    </ul>
+
+                    <h4 class="sub-unit-title">Stereochemistry</h4>
+                    <ul>
+                        <li id="optical-isomerism-no-chiral">Optical isomerism in compounds without chiral carbon</li>
+                        <li id="geometrical-isomerism">Geometrical isomerism</li>
+                        <li id="chiral-drugs">Chiral Drugs</li>
+                    </ul>
+                </section>
+
+                 <section id="unit3">
+                     <h3 class="unit-title">Unit 3: Electrochemistry, Corrosion & Engineering Materials</h3>
+
+                      <h4 class="sub-unit-title">Electrochemistry and Batteries</h4>
+                     <ul>
+                        <li id="electrochem-basics">Basic concepts of electrochemistry</li>
+                        <li id="batteries-primary">Batteries; Classification and applications of Primary Cells (Dry Cell)</li>
+                         <li id="batteries-secondary">Secondary Cells (Lead Acid battery)</li>
+                    </ul>
+
+                     <h4 class="sub-unit-title">Corrosion</h4>
+                     <ul>
+                        <li id="corrosion-intro-types">Introduction to corrosion, Types of corrosion</li>
+                        <li id="corrosion-cause-prevention">Cause of corrosion, Corrosion prevention and control</li>
+                        <li id="corrosion-industry-issues">Corrosion issues in specific industries (Power generation, Chemical processing industry, Oil & gas industry and Pulp & paper industries)</li>
+                    </ul>
+
+                    <h4 class="sub-unit-title">Chemistry of Engineering Materials</h4>
+                     <ul>
+                        <li id="cement-mfg">Cement; Constituents, manufacturing</li>
+                        <li id="cement-setting-hardening">Hardening and setting</li>
+                        <li id="cement-deterioration">Deterioration of cement</li>
+                        <li id="pop">Plaster of Paris (POP)</li>
+                    </ul>
+                </section>
+
+                <section id="unit4">
+                     <h3 class="unit-title">Unit 4: Water Technology and Fuels & Combustion</h3>
+
+                     <h4 class="sub-unit-title">Water Technology</h4>
+                     <ul>
+                        <li id="water-sources-impurities">Sources and impurities of water</li>
+                        <li id="water-hardness">Hardness of water</li>
+                        <li id="boiler-troubles">Boiler troubles</li>
+                        <li id="water-softening-techniques">Techniques for water softening (Lime-Soda, Zeolite, Ion Exchange and Reverse Osmosis process)</li>
+                        <li id="hardness-alkalinity-determination">Determination of Hardness and alkalinity</li>
+                        <li id="water-numerical">Numerical problems</li>
+                    </ul>
+
+                    <h4 class="sub-unit-title">Fuels and Combustion</h4>
+                    <ul>
+                        <li id="fuels-classification-chars">Definition, Classification, Characteristics of a good fuel</li>
+                        <li id="calorific-values">Calorific Values, Gross & Net calorific value</li>
+                        <li id="bomb-calorimeter">Determination of calorific value by Bomb Calorimeter</li>
+                        <li id="dulongs-method">Theoretical calculation of calorific value by Dulong’s method</li>
+                        <li id="coal-ranking-analysis">Ranking of Coal, Analysis of coal by Proximate and Ultimate analysis method</li>
+                        <li id="fuels-numerical">Numerical problems</li>
+                        <li id="biogas-production">Chemistry of Biogas production from organic waste materials and their environmental impact on society</li>
+                    </ul>
+                 </section>
+
+                <section id="unit5">
+                    <h3 class="unit-title">Unit 5: Materials Chemistry</h3>
+
+                    <h4 class="sub-unit-title">Polymers</h4>
+                    <ul>
+                        <li id="polymer-classification">Classification</li>
+                        <li id="polymerization-processes">Polymerization processes</li>
+                        <li id="thermoset-thermoplastic">Thermosetting and Thermoplastic Polymers</li>
+                        <li id="polymer-blends-composites">Polymer Blends and Composites</li>
+                        <li id="conducting-biodegradable-polymers">Conducting and Biodegradable polymers</li>
+                        <li id="specific-polymers">Preparation, properties, industrial applications of Teflon, Lucite, Bakelite, Kelvar, Dacron, Thiokol, Nylon, Buna-N and Buna-S</li>
+                        <li id="polymers-impact">And their environmental impact on society</li>
+                        <li id="speciality-polymers">Speciality polymers</li>
+                    </ul>
+
+                     <h4 class="sub-unit-title">Organometallic Compounds</h4>
+                    <ul>
+                        <li id="organometallic-prep">General methods of preparation</li>
+                        <li id="organometallic-apps">Applications of Organometallic compounds (RMgX and LiAlH4)</li>
+                    </ul>
+                 </section>
+
+                 <p style="margin-top: 30px; font-size: 14px; opacity: 0.8;">
+                     <i>Note: This syllabus content is based on the provided text. Refer to official AKTU sources for the definitive curriculum.</i>
+                 </p>
+            </div> <!-- End content-area -->
+        </div> <!-- End page-container -->
+    </div> <!-- End main-content -->
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2023 EduGenius - Engineering Learning Platform</p>
+        <div style="margin-top: 15px;">
+            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-instagram"></i></a>
+            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-youtube"></i></a>
+            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-telegram"></i></a>
+        </div>
+    </footer>
+
+    <!-- JavaScript (Scroll Adjustment only) -->
+    <script>
+        // DOM Elements (No auth elements needed)
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        // Simple Navigation (for header links back to index)
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                console.log(`Navigating via header link to: ${link.href}`);
+                // Allow default navigation
+            });
+        });
+
+        // Initial check on page load (Scroll Adjustment Logic)
+        document.addEventListener('DOMContentLoaded', () => {
+            const adjustScrollForHeader = () => {
+                const hash = window.location.hash;
+                if (hash) {
+                    try {
+                         // Target the element directly by ID, which should be the <li>
+                         const targetElement = document.querySelector(hash);
+                         if (targetElement) {
+                            const header = document.querySelector('.header');
+                            const headerOffset = (header ? header.offsetHeight : 85) + 30; // Header height + buffer
+                            const elementPosition = targetElement.getBoundingClientRect().top;
+                            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                        }
+                    } catch (e) { console.error("Error finding element for hash:", hash, e); }
+                }
+            };
+            if (window.location.hash) { setTimeout(adjustScrollForHeader, 100); }
+            window.addEventListener('hashchange', () => { setTimeout(adjustScrollForHeader, 0); });
+        });
+    </script>
+</body>
+</html>

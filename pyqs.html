@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduGenius - Previous Year Questions (PYQs)</title> <!-- Title Updated -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Modern Gradient UI - Core Styles */
+        :root { --primary: #6a11cb; --secondary: #2575fc; --glass: rgba(255, 255, 255, 0.2); --accent: #ff8a00; --header-height: 85px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { background: linear-gradient(45deg, #6a11cb, #2575fc); min-height: 100vh; color: white; }
+        .header { backdrop-filter: blur(10px); background: var(--glass); padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); position: sticky; top: 0; z-index: 999; height: var(--header-height); }
+        .logo { font-size: 28px; font-weight: 700; background: linear-gradient(to right, #fff, #ddd); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav a { color: white; text-decoration: none; margin-left: 20px; font-weight: 500; }
+
+        /* Main Content Area Styles */
+        .container {
+            padding: 40px 5%; /* Added top padding */
+            max-width: 1200px; /* Limit width */
+            margin: 0 auto; /* Center container */
+        }
+        .page-title { /* Style for the main page title */
+             font-size: 2.5em;
+             text-align: center;
+             margin-bottom: 40px;
+             background: linear-gradient(to right, #fff, #ddd);
+             -webkit-background-clip: text;
+             -webkit-text-fill-color: transparent;
+             position: relative;
+             display: inline-block;
+             left: 50%;
+             transform: translateX(-50%);
+        }
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--accent), #da1b60);
+            border-radius: 2px;
+        }
+
+        /* PYQ Grid and Card Styles (Adapted from index.html/common styles) */
+        .pyq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px; /* Increased gap */
+            margin-top: 30px;
+        }
+        .pyq-card {
+            backdrop-filter: blur(12px); /* Slightly more blur */
+            background: var(--glass);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2); /* Adjusted shadow */
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+            border: 1px solid rgba(255,255,255,0.1);
+            display: flex; /* Use flexbox for vertical alignment */
+            flex-direction: column;
+        }
+        .pyq-card:hover {
+            transform: translateY(-8px) scale(1.02); /* Enhanced hover effect */
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+        .pyq-thumbnail {
+            height: 160px; /* Slightly smaller */
+            background: linear-gradient(45deg, var(--primary), var(--secondary)); /* Use theme gradients */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .pyq-thumbnail i {
+            font-size: 70px; /* Larger icon */
+            opacity: 0.6; /* Slightly less opacity */
+             color: rgba(255,255,255,0.8);
+        }
+        .pyq-info {
+            padding: 20px;
+            flex-grow: 1; /* Allow info section to grow */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Push button to bottom */
+        }
+        .pyq-info h3 {
+            margin-bottom: 10px;
+            font-size: 1.25em; /* Larger heading */
+            color: #fff;
+        }
+        .pyq-info p {
+            opacity: 0.85;
+            font-size: 0.95em;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        .pyq-info .year {
+            color: var(--accent);
+            font-weight: 600;
+            margin-right: 5px;
+        }
+        .pyq-info .count {
+             opacity: 0.7;
+             font-size: 0.9em;
+        }
+        .view-pyq-btn {
+            display: inline-block;
+            background: linear-gradient(to right, var(--accent), #da1b60);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            transition: background 0.3s, transform 0.3s;
+            margin-top: auto; /* Push button to bottom */
+            align-self: center; /* Center button horizontally */
+            width: fit-content;
+        }
+        .view-pyq-btn:hover {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
+
+        /* Footer Styles - IDENTICAL */
+        .footer {
+            text-align: center;
+            padding: 30px 5%;
+            margin-top: 60px; /* Increased margin */
+            backdrop-filter: blur(10px);
+            background: var(--glass);
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .header { padding: 15px 5%; height: auto; }
+            .nav a { margin-left: 10px; font-size: 14px; }
+            .logo { font-size: 24px; }
+            .container { padding: 30px 5%; }
+            .page-title { font-size: 2em; }
+            .pyq-grid { grid-template-columns: 1fr; /* Stack cards */ }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">EduGenius</div>
+        <nav class="nav">
+            <a href="index.html" class="nav-link" data-page="home">Home</a>
+            <a href="index.html#engineering" class="nav-link" data-page="engineering">Engineering</a>
+            <a href="#" class="nav-link" data-page="pyqs">PYQs</a> <!-- Link to self or #top -->
+        </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <div id="main-content">
+        <div class="container">
+            <h1 class="page-title">Previous Year Questions</h1>
+
+            <div class="pyq-grid">
+                <!-- Mathematics-I Card -->
+                <div class="pyq-card">
+                    <div class="pyq-thumbnail"> <i class="fas fa-calculator"></i> </div>
+                    <div class="pyq-info">
+                        <div> <!-- Content wrapper -->
+                            <h3>Mathematics-I (BAS103)</h3>
+                            <p><span class="year">2018-2023</span> | <span class="count">150+ Questions</span></p>
+                        </div>
+                        <a href="#" class="view-pyq-btn">View Questions</a> <!-- Placeholder Link -->
+                    </div>
+                </div>
+
+                <!-- Mathematics-II Card -->
+                <div class="pyq-card">
+                    <div class="pyq-thumbnail"> <i class="fas fa-infinity"></i> </div>
+                    <div class="pyq-info">
+                         <div>
+                            <h3>Mathematics-II (BAS203)</h3>
+                            <p><span class="year">2019-2023</span> | <span class="count">120+ Questions</span></p>
+                         </div>
+                        <a href="#" class="view-pyq-btn">View Questions</a>
+                    </div>
+                </div>
+
+                <!-- Physics Card -->
+                <div class="pyq-card">
+                    <div class="pyq-thumbnail"> <i class="fas fa-atom"></i> </div>
+                    <div class="pyq-info">
+                        <div>
+                            <h3>Physics (BAS101/201)</h3>
+                            <p><span class="year">2017-2023</span> | <span class="count">180+ Questions</span></p>
+                        </div>
+                        <a href="#" class="view-pyq-btn">View Questions</a>
+                    </div>
+                </div>
+
+                <!-- Chemistry Card -->
+                <div class="pyq-card">
+                    <div class="pyq-thumbnail"> <i class="fas fa-flask"></i> </div>
+                    <div class="pyq-info">
+                         <div>
+                            <h3>Chemistry (BAS102/202)</h3>
+                            <p><span class="year">2018-2023</span> | <span class="count">160+ Questions</span></p>
+                         </div>
+                        <a href="#" class="view-pyq-btn">View Questions</a>
+                    </div>
+                </div>
+
+                <!-- PPS Card -->
+                <div class="pyq-card">
+                    <div class="pyq-thumbnail"> <i class="fas fa-laptop-code"></i> </div>
+                    <div class="pyq-info">
+                        <div>
+                            <h3>PPS (BCS101/201)</h3>
+                            <p><span class="year">2019-2023</span> | <span class="count">100+ Questions</span></p>
+                        </div>
+                        <a href="#" class="view-pyq-btn">View Questions</a>
+                    </div>
+                </div>
+
+                <!-- Mechanics Card -->
+                <div class="pyq-card">
+                    <div class="pyq-thumbnail"> <i class="fas fa-cogs"></i> </div>
+                    <div class="pyq-info">
+                        <div>
+                            <h3>Mechanics (BME101/201)</h3>
+                            <p><span class="year">2018-2023</span> | <span class="count">130+ Questions</span></p>
+                        </div>
+                        <a href="#" class="view-pyq-btn">View Questions</a>
+                    </div>
+                </div>
+
+                <!-- Electrical Card -->
+                 <div class="pyq-card">
+                    <div class="pyq-thumbnail"> <i class="fas fa-bolt"></i> </div>
+                    <div class="pyq-info">
+                         <div>
+                            <h3>Electrical (BEE101/201)</h3>
+                            <p><span class="year">2017-2023</span> | <span class="count">170+ Questions</span></p>
+                         </div>
+                        <a href="#" class="view-pyq-btn">View Questions</a>
+                    </div>
+                </div>
+
+                 <!-- Electronics Card -->
+                <div class="pyq-card">
+                    <div class="pyq-thumbnail"> <i class="fas fa-microchip"></i> </div>
+                    <div class="pyq-info">
+                         <div>
+                            <h3>Electronics (BEC101/201)</h3>
+                            <p><span class="year">2018-2023</span> | <span class="count">140+ Questions</span></p>
+                         </div>
+                        <a href="#" class="view-pyq-btn">View Questions</a>
+                    </div>
+                </div>
+
+            </div> <!-- End pyq-grid -->
+        </div> <!-- End container -->
+    </div> <!-- End main-content -->
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2023 EduGenius - Engineering Learning Platform</p>
+        <div style="margin-top: 15px;">
+            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-instagram"></i></a>
+            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-youtube"></i></a>
+            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-telegram"></i></a>
+        </div>
+    </footer>
+
+    <!-- JavaScript (Minimal or none needed for static display) -->
+    <script>
+        console.log("PYQs page loaded.");
+        // No complex JS needed for this static version
+    </script>
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduGenius - Engineering Physics Syllabus (New)</title> <!-- Updated Title -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Modern Gradient UI - IDENTICAL STYLES */
+        :root { --primary: #6a11cb; --secondary: #2575fc; --glass: rgba(255, 255, 255, 0.2); --accent: #ff8a00; --header-height: 85px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { background: linear-gradient(45deg, #6a11cb, #2575fc); min-height: 100vh; color: white; }
+        .header { backdrop-filter: blur(10px); background: var(--glass); padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); position: sticky; top: 0; z-index: 999; height: var(--header-height); }
+        .logo { font-size: 28px; font-weight: 700; background: linear-gradient(to right, #fff, #ddd); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav a { color: white; text-decoration: none; margin-left: 20px; font-weight: 500; }
+
+        /* Sidebar Layout Styles - IDENTICAL */
+        .page-container { display: flex; padding: 30px 5%; gap: 30px; }
+        .sidebar { width: 300px; flex-shrink: 0; backdrop-filter: blur(10px); background: var(--glass); border-radius: 15px; padding: 25px; height: fit-content; max-height: calc(100vh - var(--header-height) - 60px); overflow-y: auto; position: sticky; top: calc(var(--header-height) + 30px); border: 1px solid rgba(255,255,255,0.1); }
+        .sidebar h2 { font-size: 20px; margin-bottom: 20px; color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 8px; display: inline-block; }
+        .sidebar ul { list-style: none; padding-left: 5px; }
+        .sidebar li { margin-bottom: 8px; }
+        .sidebar li.unit-heading { font-weight: 700; color: var(--accent); margin-top: 15px; margin-bottom: 10px; font-size: 16px; padding-left: 0; }
+        .sidebar li.unit-heading:first-child { margin-top: 0; }
+        .sidebar a { color: white; text-decoration: none; font-weight: 400; font-size: 14px; display: flex; align-items: center; gap: 8px; transition: color 0.3s, transform 0.3s; padding: 5px 0; padding-left: 15px; position: relative; }
+        .sidebar a::before { content: '\f111'; /* Generic bullet */ font-family: 'Font Awesome 6 Free'; font-weight: 900; font-size: 6px; position: absolute; left: 0; top: 50%; transform: translateY(-50%); color: var(--accent); opacity: 0.7; }
+        .sidebar a:hover { color: var(--accent); transform: translateX(3px); }
+
+        /* Content Area Styles - IDENTICAL */
+        .content-area { flex-grow: 1; backdrop-filter: blur(10px); background: var(--glass); border-radius: 15px; padding: 30px; border: 1px solid rgba(255,255,255,0.1); }
+        .content-area h1.page-title { font-size: 28px; margin-bottom: 30px; background: linear-gradient(to right, #fff, #ddd); -webkit-background-clip: text; -webkit-text-fill-color: transparent; border-bottom: 2px solid rgba(255,255,255,0.2); padding-bottom: 10px; }
+        .content-area section { margin-bottom: 40px; padding-top: calc(var(--header-height) + 30px); margin-top: calc(-1 * (var(--header-height) + 30px)); }
+        .content-area h3.unit-title { margin-bottom: 20px; font-size: 22px; color: var(--accent); position: relative; padding-bottom: 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .content-area h4.sub-unit-title { font-size: 18px; font-weight: 600; margin-top: 25px; margin-bottom: 15px; color: #eee; }
+        .content-area ul { list-style: none; padding-left: 0; }
+        .content-area li { margin-bottom: 12px; line-height: 1.7; padding-left: 25px; position: relative; font-size: 16px; opacity: 0.9; padding-top: 5px; margin-top: -5px; }
+        .content-area li::before { content: '\f058'; /* Check circle */ font-family: 'Font Awesome 6 Free'; font-weight: 900; color: var(--accent); position: absolute; left: 0; top: 9px; font-size: 14px; }
+
+        /* Footer Styles - IDENTICAL */
+        .footer { text-align: center; padding: 30px 5%; margin-top: 50px; backdrop-filter: blur(10px); background: var(--glass); border-top: 1px solid rgba(255,255,255,0.1); }
+
+        /* Responsive Adjustments - IDENTICAL */
+        @media (max-width: 992px) { .page-container { flex-direction: column; } .sidebar { width: 100%; position: static; margin-bottom: 30px; max-height: 400px; } }
+        @media (max-width: 768px) { .header { padding: 15px 5%; height: auto; } .nav a { margin-left: 10px; font-size: 14px; } .logo { font-size: 24px; } .sidebar { padding: 20px; width: 100%; } .content-area { padding: 20px; } .content-area h1.page-title { font-size: 24px; } .content-area h3.unit-title { font-size: 20px; } .content-area h4.sub-unit-title { font-size: 17px; } .content-area section { padding-top: 90px; margin-top: -90px; } }
+    </style>
+</head>
+<body>
+    <!-- Header - Login link REMOVED -->
+    <header class="header">
+        <div class="logo">EduGenius</div>
+        <nav class="nav">
+            <a href="index.html" class="nav-link" data-page="home">Home</a>
+            <a href="index.html#engineering" class="nav-link" data-page="engineering">Engineering</a>
+            <a href="pyqs.html" class="nav-link" data-page="pyqs">PYQs</a>
+             <a href="practice.html" class="nav-link" data-page="practice">Practice</a>
+        </nav>
+    </header>
+
+    <!-- Main Content Area with Detailed Sidebar -->
+    <div id="main-content">
+        <div class="page-container">
+            <!-- Sidebar Navigation - Physics (New Syllabus) -->
+            <aside class="sidebar">
+                <h2>Physics Topics</h2>
+                 <ul>
+                    <li class="unit-heading">Unit 1: Quantum Mechanics</li>
+                    <li><a href="classic.html">Inadequacy of Classical Mech.</a></li>
+                    <li><a href="#plancks-theory">Planck’s Theory (Qual.)</a></li>
+                    <li><a href="#compton-effect">Compton Effect</a></li>
+                    <li><a href="#de-broglie">de-Broglie Matter Waves</a></li>
+                    <li><a href="#davisson-germer">Davisson & Germer Exp.</a></li>
+                    <li><a href="#phase-group-velocity">Phase & Group Velocity</a></li>
+                    <li><a href="#schrodinger-equations">Schrödinger Equations (T/TI)</a></li>
+                    <li><a href="#wave-function-interpretation">Wave Function Interpretation</a></li>
+                    <li><a href="#particle-1d-box">Particle in 1D Box</a></li>
+
+                    <li class="unit-heading">Unit 2: EM Field Theory</li>
+                    <li><a href="#stokes-divergence-theorems">Stoke’s & Divergence Theorems</a></li>
+                    <li><a href="#basic-em-laws">Basic Laws of E&M</a></li>
+                    <li><a href="#continuity-equation">Continuity Equation (Current)</a></li>
+                    <li><a href="#displacement-current">Displacement Current</a></li>
+                    <li><a href="#maxwell-equations">Maxwell Equations (Int/Diff)</a></li>
+                    <li><a href="#maxwell-vacuum-medium">Maxwell Eqns (Vac/Medium)</a></li>
+                    <li><a href="#poynting-vector-theorem">Poynting Vector & Theorem</a></li>
+                    <li><a href="#em-waves-vacuum">EM Waves in Vacuum</a></li>
+                    <li><a href="#em-waves-conducting">EM Waves in Conducting Medium</a></li>
+                    <li><a href="#skin-depth">Skin Depth</a></li>
+
+                    <li class="unit-heading">Unit 3: Wave Optics</li>
+                    <li><a href="#coherent-sources-optics">Coherent Sources</a></li>
+                    <li><a href="#interference-thin-films">Interference (Thin Films)</a></li>
+                    <li><a href="#extended-sources">Necessity of Extended Sources</a></li>
+                    <li><a href="#newtons-rings">Newton’s Rings & Apps</a></li>
+                    <li><a href="#diffraction-intro">Introduction to Diffraction</a></li>
+                    <li><a href="#fraunhoffer-single-slit">Fraunhoffer (Single Slit)</a></li>
+                    <li><a href="#fraunhoffer-double-slit">Fraunhoffer (Double Slit)</a></li>
+                    <li><a href="#absent-spectra">Absent Spectra</a></li>
+                    <li><a href="#diffraction-grating">Diffraction Grating</a></li>
+                    <li><a href="#grating-spectra">Spectra with Grating</a></li>
+                    <li><a href="#dispersive-power">Dispersive Power</a></li>
+                    <li><a href="#resolving-power">Resolving Power (Intro)</a></li>
+                    <li><a href="#rayleigh-criterion">Rayleigh’s Criterion</a></li>
+                    <li><a href="#resolving-power-grating">Resolving Power of Grating</a></li>
+
+                    <li class="unit-heading">Unit 4: Fiber Optics & Laser</li>
+                    <li><a href="#fiber-principle">Fiber Optics: Principle & Const.</a></li>
+                    <li><a href="#acceptance-angle">Acceptance Angle</a></li>
+                    <li><a href="#numerical-aperture">Numerical Aperture</a></li>
+                    <li><a href="#acceptance-cone">Acceptance Cone</a></li>
+                    <li><a href="#fiber-types">Step Index & Graded Index Fibers</a></li>
+                    <li><a href="#fiber-communication">Fiber Optic Communication</a></li>
+                    <li><a href="#fiber-attenuation">Attenuation</a></li>
+                    <li><a href="#fiber-dispersion">Dispersion</a></li>
+                    <li><a href="#fiber-applications">Application of Fiber</a></li>
+                    <li><a href="#laser-absorption">Absorption of Radiation</a></li>
+                    <li><a href="#laser-emission">Spontaneous & Stimulated Emission</a></li>
+                    <li><a href="#population-inversion">Population Inversion</a></li>
+                    <li><a href="#einsteins-coefficients">Einstein’s Coefficients</a></li>
+                    <li><a href="#laser-action-principle">Principles of Laser Action</a></li>
+                    <li><a href="#ruby-laser">Solid State Laser (Ruby)</a></li>
+                    <li><a href="#he-ne-laser">Gas Laser (He-Ne)</a></li>
+                    <li><a href="#laser-applications">Laser Applications</a></li>
+
+                    <li class="unit-heading">Unit 5: Superconductors & Nano</li>
+                    <li><a href="#superconductors-resistivity">Temp. Dependence of Resistivity</a></li>
+                    <li><a href="#meissner-effect">Meissner Effect</a></li>
+                    <li><a href="#critical-field">Temp. Dependence of Critical Field</a></li>
+                    <li><a href="#persistent-current">Persistent Current</a></li>
+                    <li><a href="#type1-type2-superconductors">Type I & Type II Superconductors</a></li>
+                    <li><a href="#high-temp-superconductors">High Temperature Superconductors</a></li>
+                    <li><a href="#superconductor-properties-apps">Properties & Apps of Superconductors</a></li>
+                    <li><a href="#nano-intro-properties">Intro & Properties of Nano Materials</a></li>
+                    <li><a href="#quantum-dots-wires-wells">Quantum Dots, Wires & Wells</a></li>
+                    <li><a href="#nano-fabrication-topdown">Fabrication (Top-Down: CVD)</a></li>
+                    <li><a href="#nano-fabrication-bottomup">Fabrication (Bottom-Up: Sol Gel)</a></li>
+                    <li><a href="#nano-properties-apps">Properties & Apps of Nano Materials</a></li>
+                </ul>
+            </aside>
+
+            <!-- Syllabus Content - Using NEW Syllabus -->
+            <div class="content-area">
+                 <h1 class="page-title">Engineering Physics Syllabus (New Curriculum) - AKTU</h1>
+
+                <!-- Section for each Unit -->
+                <section id="unit1">
+                    <h3 class="unit-title">Unit 1: Quantum Mechanics</h3>
+                    <ul>
+                        <li id="inadequacy-classical">Inadequacy of classical mechanics</li>
+                        <li id="plancks-theory">Planck’s theory of black body radiation (qualitative)</li>
+                        <li id="compton-effect">Compton effect</li>
+                        <li id="de-broglie">de-Broglie concept of matter waves</li>
+                        <li id="davisson-germer">Davisson and Germer Experiment</li>
+                        <li id="phase-group-velocity">Phase velocity and group velocity</li>
+                        <li id="schrodinger-equations">Time-dependent and time-independent Schrodinger wave equations</li>
+                        <li id="wave-function-interpretation">Physical interpretation of wave function</li>
+                        <li id="particle-1d-box">Particle in a one-Dimensional box</li>
+                    </ul>
+                </section>
+
+                <section id="unit2">
+                    <h3 class="unit-title">Unit 2: Electromagnetic Field Theory</h3>
+                     <ul>
+                        <li id="stokes-divergence-theorems">Basic concept of Stoke’s theorem and Divergence theorem</li>
+                        <li id="basic-em-laws">Basic laws of electricity and magnetism</li>
+                        <li id="continuity-equation">Continuity equation for current density</li>
+                        <li id="displacement-current">Displacement current</li>
+                        <li id="maxwell-equations">Maxwell equations in integral and differential form</li>
+                        <li id="maxwell-vacuum-medium">Maxwell equations in vacuum and in conducting medium</li>
+                        <li id="poynting-vector-theorem">Poynting vector and Poynting theorem</li>
+                        <li id="em-waves-vacuum">Plane electromagnetic waves in vacuum and their transverse nature. Relation between electric and magnetic fields of an electromagnetic wave</li>
+                        <li id="em-waves-conducting">Plane electromagnetic waves in conducting medium</li>
+                        <li id="skin-depth">Skin depth</li>
+                    </ul>
+                </section>
+
+                 <section id="unit3">
+                    <h3 class="unit-title">Unit 3: Wave Optics</h3>
+                     <ul>
+                        <li id="coherent-sources-optics">Coherent sources</li>
+                        <li id="interference-thin-films">Interference in uniform and wedge shaped thin films</li>
+                        <li id="extended-sources">Necessity of extended sources</li>
+                        <li id="newtons-rings">Newton’s Rings and its applications</li>
+                        <li id="diffraction-intro">Introduction to diffraction</li>
+                        <li id="fraunhoffer-single-slit">Fraunhoffer diffraction at single slit</li>
+                        <li id="fraunhoffer-double-slit">Fraunhoffer diffraction at double slit</li>
+                        <li id="absent-spectra">Absent spectra</li>
+                        <li id="diffraction-grating">Diffraction grating</li>
+                        <li id="grating-spectra">Spectra with grating</li>
+                        <li id="dispersive-power">Dispersive power</li>
+                        <li id="resolving-power">Resolving power</li>
+                        <li id="rayleigh-criterion">Rayleigh’s criterion of resolution</li>
+                        <li id="resolving-power-grating">Resolving power of grating</li>
+                    </ul>
+                </section>
+
+                <section id="unit4">
+                     <h3 class="unit-title">Unit 4: Fiber Optics & Laser</h3>
+                     <!-- Using sub-headings for clarity -->
+                     <h4 class="sub-unit-title">Fibre Optics</h4>
+                     <ul>
+                        <li id="fiber-principle">Principle and construction of optical fiber</li>
+                        <li id="acceptance-angle">Acceptance angle</li>
+                        <li id="numerical-aperture">Numerical aperture</li>
+                        <li id="acceptance-cone">Acceptance cone</li>
+                        <li id="fiber-types">Step index and graded index fibers</li>
+                        <li id="fiber-communication">Fiber optic communication principle</li>
+                        <li id="fiber-attenuation">Attenuation</li>
+                        <li id="fiber-dispersion">Dispersion</li>
+                        <li id="fiber-applications">Application of fiber</li>
+                    </ul>
+                     <h4 class="sub-unit-title">Laser</h4>
+                     <ul>
+                        <li id="laser-absorption">Absorption of radiation</li>
+                        <li id="laser-emission">Spontaneous and stimulated emission of radiation</li>
+                        <li id="population-inversion">Population inversion</li>
+                        <li id="einsteins-coefficients">Einstein’s Coefficients</li>
+                        <li id="laser-action-principle">Principles of laser action</li>
+                        <li id="ruby-laser">Solid state Laser (Ruby laser)</li>
+                        <li id="he-ne-laser">Gas Laser (He-Ne laser)</li>
+                        <li id="laser-applications">Laser applications</li>
+                    </ul>
+                 </section>
+
+                <section id="unit5">
+                     <h3 class="unit-title">Unit 5: Superconductors and Nano-Materials</h3>
+                      <!-- Using sub-headings for clarity -->
+                     <h4 class="sub-unit-title">Superconductors</h4>
+                     <ul>
+                        <li id="superconductors-resistivity">Temperature dependence of resistivity in superconducting materials</li>
+                        <li id="meissner-effect">Meissner effect</li>
+                        <li id="critical-field">Temperature dependence of critical field</li>
+                        <li id="persistent-current">Persistent current</li>
+                        <li id="type1-type2-superconductors">Type I and Type II superconductors</li>
+                        <li id="high-temp-superconductors">High temperature superconductors</li>
+                        <li id="superconductor-properties-apps">Properties and Applications of Super-conductors</li>
+                    </ul>
+                      <h4 class="sub-unit-title">Nano-Materials</h4>
+                     <ul>
+                        <li id="nano-intro-properties">Introduction and properties of nano materials</li>
+                        <li id="quantum-dots-wires-wells">Basics concept of Quantum Dots, Quantum wires and Quantum well</li>
+                        <li id="nano-fabrication-topdown">Fabrication of nano materials - Top-Down approach (CVD)</li>
+                        <li id="nano-fabrication-bottomup">Fabrication of nano materials - Bottom-Up approach (Sol Gel)</li>
+                        <li id="nano-properties-apps">Properties and Application of nano materials</li>
+                    </ul>
+                 </section>
+
+                 <p style="margin-top: 30px; font-size: 14px; opacity: 0.8;">
+                     <i>Note: This syllabus content is based on the provided text. Refer to official AKTU sources for the definitive curriculum.</i>
+                 </p>
+            </div> <!-- End content-area -->
+        </div> <!-- End page-container -->
+    </div> <!-- End main-content -->
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2023 EduGenius - Engineering Learning Platform</p>
+        <div style="margin-top: 15px;">
+            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-instagram"></i></a>
+            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-youtube"></i></a>
+            <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-telegram"></i></a>
+        </div>
+    </footer>
+
+    <!-- JavaScript (Scroll Adjustment only) -->
+    <script>
+        // DOM Elements (No auth elements needed)
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        // Simple Navigation (for header links back to index)
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                console.log(`Navigating via header link to: ${link.href}`);
+                // Allow default navigation
+            });
+        });
+
+        // Initial check on page load (Scroll Adjustment Logic)
+        document.addEventListener('DOMContentLoaded', () => {
+            const adjustScrollForHeader = () => {
+                const hash = window.location.hash;
+                if (hash) {
+                    try {
+                         // Target the element directly by ID, which should be the <li>
+                         const targetElement = document.querySelector(hash);
+                         if (targetElement) {
+                            const header = document.querySelector('.header');
+                            const headerOffset = (header ? header.offsetHeight : 85) + 30; // Header height + buffer
+                            const elementPosition = targetElement.getBoundingClientRect().top;
+                            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                        }
+                    } catch (e) { console.error("Error finding element for hash:", hash, e); }
+                }
+            };
+            if (window.location.hash) { setTimeout(adjustScrollForHeader, 100); }
+            window.addEventListener('hashchange', () => { setTimeout(adjustScrollForHeader, 0); });
+        });
+    </script>
+</body>
+</html>
